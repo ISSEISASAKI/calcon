@@ -1,17 +1,12 @@
-<!DOCTYPE html>
-<!--ランキングページ-->
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!--スマホ用画面サイズ設定-->
+@extends('layouts.app')
 
-  <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-</head>
-
+@section('content')
 <div class="text-center mt-5">
-    <h2>一位 アイス</h2>
+    <h1>ランキング</h1><br>
+    <h2>一位 アイス</h2><br>
 
-    <h3>二位 おにぎり</h3>
+    <h2>二位 おにぎり</h2><br>
 
-    <h4>三位 ジュース</h4>
+    <h2>三位 ジュース</h2><br>
 </div>
+@endsection

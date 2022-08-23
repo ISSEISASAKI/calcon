@@ -1,24 +1,14 @@
-<!DOCTYPE html>
-<!--トップページ管理画面-->
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!--スマホ用画面サイズ設定-->
+@extends('layouts.app')
 
-  <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-</head>
-
-<div class="text-center mt-5">
-<div class="text-center mt-5">
-    <a class="h2" href="http://127.0.0.1:8000/storetypesmanagement/seveneleven/index">セブンイレブン</a><br>
-
-    <a class="h2" href="http://127.0.0.1:8000/storetypesmanagement/familymart/index">ファミリーマート</a><br>
-
-    <a class="h2" href="http://127.0.0.1:8000/storetypesmanagement/lowson/index">ローソン</abs><br>
-
-    <a class="h2" href="http://127.0.0.1:8000/storetypesmanagement/ministop/index">ミニストップ</a><br>
-
-    <a class="h2" href="http://127.0.0.1:8000/storetypesmanagement/dailyyamazaki/index">デイリーヤマザキ</a><br>
-
-    <a class="h4 mt-5" href="http://127.0.0.1:8000/dashboard/add">追加</h4>
+@section('content')
+<div class="container text-center mt-5">
+  @foreach($store_type_managements as $store_type_management)
+    <div class="mt-4">
+      <a class="h2" href="{{ route('genremanagement.index', ['store_type_id' => $store_type_management['id']]) }}">{{ $store_type_management['name'], $name}}</a>
+      <a type="button" class="btn btn-secondary ml-5" href="#" role="button">編集</a>
+      <a type="button" class="btn btn-danger" href="#" role="button">削除</a><br>
+    </div>
+  @endforeach
+  <a type="button" class="btn btn-primary mt-5" href="{{ route('dashboard.add') }}" role="button">追加</a>
 </div>
+@endsection

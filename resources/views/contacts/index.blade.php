@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<!--お問い合せ画面-->
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!--スマホ用画面サイズ設定-->
+@extends('layouts.app')
 
-  <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-</head>
-
-<body>
+@section('content')
 <div class="container mt-5 pt-5">
   <div class="row">
     <div class="col-md-6 offset-md-3">
@@ -28,12 +20,12 @@
         </div>
         <div class="text-center mt-5">
           <a type="button" class="btn btn-secondary mr-5">戻る</a>
-          <a type="submit" class="btn btn-primary ml-5" href="http://127.0.0.1:8000/contacts/finish" role="button">送信</a>
+          <a type="submit" class="btn btn-primary ml-5" href="{{ route('contacts.index') }}" role="button">送信</a>
         </div>
       </form>
     </div>
   </div>
 </div>
-</body>
+@endsection
 
 

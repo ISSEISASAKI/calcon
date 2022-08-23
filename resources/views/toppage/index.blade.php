@@ -1,25 +1,13 @@
-<!DOCTYPE html>
-<!--トップページ-->
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!--スマホ用画面サイズ設定-->
+@extends('layouts.app')
 
-  <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-</head>
-
-<div class="text-center mt-5">
-    <a class="h2" href="http://127.0.0.1:8000/storetypes/seveneleven/index">セブンイレブン</a><br>
-
-    <a class="h2" href="http://127.0.0.1:8000/storetypes/familymart/index">ファミリーマート</a><br>
-
-    <a class="h2" href="http://127.0.0.1:8000/storetypes/lowson/index">ローソン</abs><br>
-
-    <a class="h2" href="http://127.0.0.1:8000/storetypes/ministop/index">ミニストップ</a><br>
-
-    <a class="h2" href="http://127.0.0.1:8000/storetypes/dailyyamazaki/index">デイリーヤマザキ</a><br>
+@section('content')
+<div class="container text-center mt-5">
+  @foreach($store_types as $store_type)
+    <div class="mt-4">
+        <a class="h2" href="{{ route('genre.index', ['store_type_id' => $store_type['id']]) }}">{{ $store_type['name'] }}</a>
+    </div>
+  @endforeach
+  <h1 class="font-weight-bold mt-5">本日摂取カロリー</h1>
+  <h1 class="font-weight-bold">30,000cal</h1>
 </div>
-<div class="text-center mt-5">
-    <h1 class="font-weight-bold">本日摂取カロリー</h1>
-    <h1 class="font-weight-bold">30,000cal</h1>
-</div>
+@endsection

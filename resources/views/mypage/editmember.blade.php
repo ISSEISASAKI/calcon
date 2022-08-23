@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<!--会員情報編集ページ-->
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!--スマホ用画面サイズ設定-->
-  <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-  <title>会員情報編集</title>
-</head>
+@extends('layouts.app')
 
-<body>
+@section('content')
 <div class="container mt-5 pt-5">
   <div class="row">
     <div class="col-md-6 offset-md-3">
@@ -31,11 +23,11 @@
           <input type="password" class="form-control" placeholder="Confirm password again">
         </div>
         <div class="text-center mt-5">
-          <a type="button" class="btn btn-secondary mr-5" href="http://127.0.0.1:8000/mypage" role="button">戻る</a>
-          <a type="button" class="btn btn-primary ml-5" href="http://127.0.0.1:8000/mypage" role="button">編集</a>
+          <a type="button" class="btn btn-secondary mr-5" href="{{ route('mypage') }}" role="button">戻る</a>
+          <a type="button" class="btn btn-primary ml-5" href="{{ route('mypage') }}" role="button">編集</a>
         </div>
       </form>
     </div>
   </div>
 </div>
-</body>
+@endsection
