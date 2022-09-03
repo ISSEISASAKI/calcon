@@ -8,7 +8,7 @@
 
     <a class="h2" href="{{ route('mypage.purchasehistory') }}">購入履歴</a><br>
 
-    <a class="h2" href="{{ route('mypage.targetcalorie') }}">目標カロリー設定</a><br>
+    <a class="h2" href="{{ route('calorie_target.index') }}">目標カロリー設定</a><br>
 
     <a class="h2" href="{{ route('mypage.logout') }}">ログアウト</h2>
   </div>

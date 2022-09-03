@@ -3,56 +3,34 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Genre;
 
 class GenreManagementController extends Controller
 {
     public function index(Request $request){
         $store_type_id = $request -> store_type_id;
-        //$genremanagements = Genremanagement:all();
-            $genremanagements = [
-                [
-                    'id' => 1,
-                    'name' => 'おにぎり',
-                    'admin_id' => '',
-                    'created_at' => '',
-                    'updated_at' => '',
-                    'deleted_at' => '',
-                ],
-                [
-                    'id' => 2,
-                    'name' => 'アイス', 
-                    'admin_id' => '',
-                    'created_at' => '',
-                    'updated_at' => '',
-                    'deleted_at' => '', 
-                ],
-                [
-                    'id' => 3,
-                    'name' => 'お弁当',
-                    'admin_id' => '',
-                    'created_at' => '',
-                    'updated_at' => '',
-                    'deleted_at' => '',
-                ],
-                [
-                    'id' => 4,
-                    'name' => '飲み物',
-                    'admin_id' => '',
-                    'created_at' => '',
-                    'updated_at' => '',
-                    'deleted_at' => '',
-                ],
-                [
-                    'id' => 5,
-                    'name' => 'スイーツ',
-                    'admin_id' => '',
-                    'created_at' => '',
-                    'updated_at' => '',
-                    'deleted_at' => '',
-                ],
+        $genre_managements = Genre::all();
+ 
+        return view('genre_management.index', compact('store_type_id', 'genre_managements'));
+    }
 
-            ];
-            return view('genremanagement.index', compact('store_type_id', 'genremanagements'));
+    public function add(){
+        return view('genre_management.add');
+    }
+
+    public function store(Request $request)
+    {
+ 
+          $post = new Genre();
+          $post->name = $request->name;
+          $post->admin_id = 1;
+          $post->save();
+  
+          return view('genre_management.finishadd');
+    }
+
+    public function finishadd(){
+        return view('genre_management.finishadd');
     }
     
 }

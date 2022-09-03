@@ -16,9 +16,7 @@ class MypageController extends Controller
     public function editmember(){
         return view('mypage.editmember');
         }
-    public function targetcalorie(){
-        return view('mypage.targetcalorie');
-        }
+
     
     public function purchasehistory(){
         return view('mypage.purchasehistory.index');

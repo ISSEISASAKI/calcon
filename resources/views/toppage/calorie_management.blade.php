@@ -12,7 +12,7 @@
   </div>
   <div class="float-right text-xenter mt-5 mr-5">
     <p>本日目標カロリー</p>
-    <p>35,000cal</p>
+    <p>{{ $calorie_targets['calorie'] }}</p>
   </div>
   <div class="fixed-bottom text-center mb-5">
     <p>本日合計金額</p>

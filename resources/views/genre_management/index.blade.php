@@ -2,9 +2,9 @@
 
 @section('content')
 <div class="container text-center mt-5">
-  @foreach($store_type_managements as $store_type_management)
+  @foreach($genre_managements as $genre_management)
     <div class="d-flex justify-content-center mt-4">
-      <a class="h2" href="{{ route('genre_management.index', ['store_type_id' => $store_type_management['id']]) }}">{{ $store_type_management['name']}}</a>
+      <a class="h2" href="{{ route('product_management.index', ['store_type_id' => $store_type_id, 'genre_id' => $genre_management['id']]) }}">{{ $genre_management['name'] }}</a>
       <button type="submit" class="btn btn-secondary ml-5">編集</button>
       <form method="POST" onsubmit="if(confirm('本当に削除しますか？')) { return true } else {return false };">
         @csrf
@@ -12,6 +12,6 @@
       </form>
     </div>
   @endforeach
-  <a type="button" class="btn btn-primary mt-5" href="{{ route('storetype_management.add') }}" role="button">追加</a>
+  <a type="button" class="btn btn-primary mt-5" href="{{ route('genre_management.add') }}" role="button">追加</a>
 </div>
 @endsection

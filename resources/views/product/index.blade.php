@@ -16,7 +16,7 @@
 </form>
 @endif
 @endforeach
-  <a type="submit" class="btn btn-primary mt-4" href="{{ route('contacts.index') }}" role="button">送信</a>
+  <a type="submit" class="btn btn-primary mt-4" href="#" role="button">送信</a>
   <div class="h1 text-right mb-5">
     <p>選択cal</p>
   </div>
