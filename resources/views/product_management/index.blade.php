@@ -9,7 +9,7 @@
     <input class="h2 mr-2" type="checkbox" name="product[]">{{ $product_management['name'] }}
     <p class="h2">{{ $product_management['price'] }}円</p>
     <p class="h2">{{ $product_management['calorie'] }}cal</p>
-    <img src="{{ asset('img/ .$product_management->img_filename') }}" class="img-thumbnail">
+    <img src="{{ asset('img/' .$product_management->img_filename) }}" class="img-thumbnail">
   </form>
 @endif
 @endforeach
@@ -20,10 +20,8 @@
 <div class="container">
   <div class="row justify-content-md-center mt-5">
     <div class="col-xs-1">
-      <label>ConviniName</label>
-      <input type="name" name="store_type_id" class="form-control" placeholder="ConviniName" value="">
-      <label>Genre</label>
-      <input type="name" name="genre_id" class="form-control" placeholder="Genre" value="">
+      <input type="hidden" name="store_type_id" class="form-control" placeholder="ConviniName" value="{{ $store_type_id }}">
+      <input type="hidden" name="genre_id" class="form-control" placeholder="Genre" value="{{ $genre_id }}">
       <label>Name</label>
       <input type="name" name="name" class="form-control" placeholder="Name" value="">
       <label>Price</label>

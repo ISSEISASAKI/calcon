@@ -16,17 +16,17 @@ class DashboardController extends Controller
         return view('dashboard.index', compact('store_type_managements'));
     }
 
-    public function edit($id){
-        $store_type_managements = StoreType::find($id);
-        return view('dashboard.edit', compact('store_type_managements'));
-    }
 
-    public function destroy($id){
-        $store_type_managements = StoreType::find($id);
+
+    public function destroy(Request $request){
+        $store_type_id = $request -> store_type_id;
+        $store_type_managements = StoreType::find($store_type_id);
     
         $store_type_managements->delete();
+
+        $store_type_managements = StoreType::all();
  
-         return view('dashboard.index');
+        return view('dashboard.index', compact('store_type_managements'));
     }
 
 

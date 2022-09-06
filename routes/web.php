@@ -34,8 +34,11 @@ Route::get('/dashboard', 'DashboardController@index') -> name('dashboard.index')
 Route::get('/add', 'StoretypeManagementController@add') -> name('storetype_management.add');
 Route::post('/add/finishadd', 'StoretypeManagementController@store') -> name('storetype_management.store');
 Route::get('/add/finishadd', 'StoretypeManagementController@finishadd') -> name('storetype_management.finishadd');
+//コンビニ名編集
+Route::post('/storetype_management/edit', 'StoretypeManagementController@edit')->name('storetype_management.edit');
+Route::post('/storetype_management/update', 'StoretypeManagementController@update')->name('storetype_management.update');
 //コンビニ名削除
-Route::post('/destroy{id}', [DashboardController::class, 'destroy'])->name('dashboard.destroy');
+Route::post('/destroy', 'DashboardController@destroy')->name('dashboard.destroy');
 
 //ジャンル管理
 Route::get('/genre_management', 'GenreManagementController@index') -> name('genre_management.index');
