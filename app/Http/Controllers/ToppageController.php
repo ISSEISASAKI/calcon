@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\StoreType;
 
 
-class ToppageController extends Controller
+class TopPageController extends Controller
 {
     public function index(){
         $store_types = StoreType::all(); 

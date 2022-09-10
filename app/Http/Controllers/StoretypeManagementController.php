@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\StoreType;
 
-class StoretypeManagementController extends Controller
+class StoreTypeManagementController extends Controller
 {
     public function add(){
         return view('storetype_management.add');
@@ -23,9 +23,14 @@ class StoretypeManagementController extends Controller
           return view('storetype_management.finishadd');
     }
 
-    public function edit(){
+    public function finishadd(){
+        return view('storetype_management.finishadd');
+    }
 
-        return view('storetype_management.edit');
+    public function edit(Request $request){
+        $store_type_id = $request -> store_type_id;
+
+        return view('storetype_management.edit', compact('store_type_id'));
     }
 
     public function update(Request $request){
@@ -43,8 +48,6 @@ class StoretypeManagementController extends Controller
         return view('dashboard.index', compact('store_type_managements'));
     }
 
-    public function finishadd(){
-        return view('storetype_management.finishadd');
-    }
+
 
 }

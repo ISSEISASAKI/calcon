@@ -11,41 +11,57 @@
 |
 */
 //トップページ
-Route::get('/', 'ToppageController@index');
-Route::get('/toppage/ranking', 'ToppageController@ranking') -> name('toppage.ranking');
+Route::get('/', 'TopPageController@index');
+Route::get('/toppage/ranking', 'TopPageController@ranking') -> name('toppage.ranking');
 Route::get('/toppage/calorie_management', 'CalorieManagementController@index') -> name('calorie_management.index');
 
+
 //マイページ
-Route::get('/mypage', 'MypageController@index') -> name('mypage');
-Route::get('/mypage/logout', 'MypageController@logout') ->name('mypage.logout');
-Route::get('/mypage/editmember', 'MypageController@editmember') -> name('mypage.editmember');
+Route::get('/mypage', 'MyPageController@index') -> name('mypage');
+Route::get('/mypage/logout', 'MyPageController@logout') ->name('mypage.logout');
+Route::get('/mypage/editmember', 'MyPageController@editmember') -> name('mypage.editmember');
+
+
 //目標カロリー登録画面
 Route::get('/mypage/calorie_target', 'CalorieTargetController@index') -> name('calorie_target.index');
 Route::post('/mypage/calorie_target/finishadd', 'CalorieTargetController@store') -> name('calorie_target.store');
 Route::get('/mypage/calorie_target/finishadd', 'CalorieTargetController@finishadd') -> name('calorie_target.finishadd');
 
 //コンビニ購入履歴
-Route::get('/mypage/purchasehistory', 'MypageController@purchasehistory') -> name('mypage.purchasehistory');
-Route::get('/mypage/purchasehistory/se_purchasehistory', 'MypageController@se_purchasehistory');
+Route::get('/mypage/purchasehistory', 'MyPageController@purchasehistory') -> name('mypage.purchasehistory');
+Route::get('/mypage/purchasehistory/se_purchasehistory', 'MyPageController@se_purchasehistory');
+
 
 //トップページ管理
 Route::get('/dashboard', 'DashboardController@index') -> name('dashboard.index');
+
+
 //コンビニ名追加
-Route::get('/add', 'StoretypeManagementController@add') -> name('storetype_management.add');
-Route::post('/add/finishadd', 'StoretypeManagementController@store') -> name('storetype_management.store');
-Route::get('/add/finishadd', 'StoretypeManagementController@finishadd') -> name('storetype_management.finishadd');
+Route::get('/add', 'StoreTypeManagementController@add') -> name('storetype_management.add');
+Route::post('/add/finishadd', 'StoreTypeManagementController@store') -> name('storetype_management.store');
+Route::get('/add/finishadd', 'StoreTypeManagementController@finishadd') -> name('storetype_management.finishadd');
+
 //コンビニ名編集
-Route::post('/storetype_management/edit', 'StoretypeManagementController@edit')->name('storetype_management.edit');
-Route::post('/storetype_management/update', 'StoretypeManagementController@update')->name('storetype_management.update');
+Route::get('/storetype_management/edit', 'StoreTypeManagementController@edit') -> name('storetype_management.edit');
+Route::post('/storetype_management/update', 'StoreTypeManagementController@update') -> name('storetype_management.update');
+
 //コンビニ名削除
-Route::post('/destroy', 'DashboardController@destroy')->name('dashboard.destroy');
+Route::post('/destroy', 'DashboardController@destroy') -> name('dashboard.destroy');
 
 //ジャンル管理
 Route::get('/genre_management', 'GenreManagementController@index') -> name('genre_management.index');
-//ジャンル追加ページ
+
+//ジャンル追加
 Route::get('/genre_management/add', 'GenreManagementController@add') -> name('genre_management.add');
 Route::post('/genre_management/add/finishadd', 'GenreManagementController@store') -> name('genre_management.store');
 Route::get('/genre_management/add/finishadd', 'GenreManagementController@finishadd') -> name('genre_management.finishadd');
+
+//ジャンル編集
+Route::get('/genre_management/edit', 'GenreManagementController@edit') -> name('genre_management.edit');
+Route::post('/genre_management/update', 'GenreManagementController@update') -> name('genre_management.update');
+
+//ジャンル削除
+Route::post('genre_management/destroy', 'GenreManagementController@destroy') -> name('genre_management.destroy');
 
 //ジャンルページ
 Route::get('/genre', 'GenreController@index') -> name('genre.index');
@@ -53,9 +69,17 @@ Route::get('/genre', 'GenreController@index') -> name('genre.index');
 
 //商品管理
 Route::get('/product_management', 'ProductManagementController@index') -> name('product_management.index');
-//商品追加ページ
+
+//商品追加
 Route::post('/product_management/finishadd', 'ProductManagementController@store') -> name('product_management.store');
 Route::get('/product_management/finishadd', 'ProductManagementController@finishadd') -> name('product_management.finishadd');
+
+//商品編集
+Route::get('/product_management/edit', 'ProductManagementController@edit') -> name('product_management.edit');
+Route::post('/product_management/update', 'ProductManagementController@update') -> name('product_management.update');
+
+//商品削除
+Route::post('product_management/destroy', 'ProductManagementController@destroy') -> name('product_management.destroy');
 
 
 //商品ページ

@@ -8,7 +8,7 @@
         <!--追加の時はPOST-->
         @csrf
         <div class="mb-3">
-          <h1 class="text-center">ジャンル追加画面</h1>
+          <h1 class="text-center">ジャンル名追加画面</h1>
           <label class="mt-5">ジャンル名</label>
           <input type="name" name="name" class="form-control align-self-center" placeholder="Name" value="">
         </div>
