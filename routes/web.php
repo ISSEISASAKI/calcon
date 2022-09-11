@@ -14,6 +14,7 @@
 Route::get('/', 'TopPageController@index');
 Route::get('/toppage/ranking', 'TopPageController@ranking') -> name('toppage.ranking');
 Route::get('/toppage/calorie_management', 'CalorieManagementController@index') -> name('calorie_management.index');
+//Route::get('/toppage/calorie_management', 'CalorieManagementController@index') -> name('calorie_management.index');
 
 
 //マイページ

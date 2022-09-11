@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Collection;
 use App\Product;
 
 class ProductManagementController extends Controller
@@ -11,9 +12,14 @@ class ProductManagementController extends Controller
         $store_type_id = $request->store_type_id;
         $genre_id = $request->genre_id;
 
+
         $product_managements = Product::all();
+
+        $product = Product::where('store_type_id', $request)
+                   ->where('genre_id', $request)
+                   ->get();
   
-            return view('product_management.index', compact('store_type_id', 'genre_id', 'product_managements'));
+        return view('product_management.index', compact('store_type_id', 'genre_id', 'product_managements', 'product'));
     }
 
 
@@ -38,44 +44,39 @@ class ProductManagementController extends Controller
     }
 
     public function edit(Request $request){
-        $store_type_id = $request -> store_type_id;
-        $genre_id = $request->genre_id;
-        $product_name = $request->product_name;
+        $product_id = $request->product_id;
 
-        return view('product_management.edit', compact('store_type_id', 'genre_id','product_name'));
+        return view('product_management.edit', compact('product_id'));
     }
 
     public function update(Request $request){
-        $store_type_id = $request -> store_type_id;
-        $genre_id = $request->genre_id; 
-        $product_name = $request->product_name;
-
+        $product_id = $request->product_id;
 
         
-        $product_managements = Product::find($store_type_id);
-        $genre_managements->name = $request->name;
-        $genre_managements->save();
+        $product_managements = Product::find($product_id);
+        $product_managements->name = $request->name;
+        $product_managements->save();
 
-        $genre_managements = Product::all();        
+        $product_managements = Product::all();        
 
 
-        return view('product_management.index', compact('product_managements', 'store_type_id', 'genre_id', 'product_name'));
+        return view('product_management.index', compact('product_managements', 'product_id'));
     }
 
     public function destroy(Request $request){
-        $store_type_id = $request -> store_type_id;
-        $genre_id = $request->genre_id;
-        $product_name = $request->product_name;
+        $product_id = $request->product_id;
 
 
-
-        $product_managements = Product::find([$store_type_id, $genre_id, $product_name]);
+        foreach ($product_id as $id) {
     
+        $product_managements = Product::find($id);
         $product_managements->delete();
 
+        }
+
         $product_managements = Product::all();
- 
-        return view('product_management.index', compact('product_managements', 'store_type_id', 'genre_id', 'produc_name'));
+
+        return view('dashboard.index', compact('product_managements'));
     }
     
     

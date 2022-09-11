@@ -13,7 +13,7 @@
           <input type="text" name="name" class="form-control align-self-center" placeholder="Name" value="">
         </div>
         <div class="text-center mt-5">
-          <button class="btn btn-primary" type="submit">編集</button>
+          <button class="btn btn-primary" type="submit">送信</button>
 
    
         </div>

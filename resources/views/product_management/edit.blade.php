@@ -4,7 +4,7 @@
 <div class="container mt-5 pt-5">
   <div class="row">
     <div class="col-md-6 offset-md-3">
-      <form method = "POST" action="{{ route('product_management.update', ['store_type_id' => $store_type_id, 'genre_id' => $genre_id]) }}">
+      <form method = "POST" action="{{ route('product_management.update', ['product_id' => $product_id]) }}">
         <!--追加の時はPOST-->
         @csrf
         <div class="mb-3">
@@ -13,7 +13,7 @@
           <input type="text" name="name" class="form-control align-self-center" placeholder="Name" value="">
         </div>
         <div class="text-center mt-5">
-          <button class="btn btn-primary" type="submit">追加</button>
+          <button class="btn btn-primary" type="submit">送信</button>
 
    
         </div>

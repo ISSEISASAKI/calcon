@@ -18,13 +18,13 @@
                 <a class="nav-link" href="#">ログイン</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('toppage.ranking') }}" >ランキング</a>
+                <a class="nav-link" href="{{ route('toppage.ranking') }}">ランキング</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('calorie_management.index') }}" >摂取カロリー</a>
+                <a class="nav-link" href="{{ route('calorie_management.index') }}">摂取カロリー</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('mypage') }}" >マイページ</a>
+                <a class="nav-link" href="{{ route('mypage') }}">マイページ</a>
             </li>
             @else
             <li class="nav-item dropdown">
