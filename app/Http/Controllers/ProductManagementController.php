@@ -15,11 +15,13 @@ class ProductManagementController extends Controller
 
         $product_managements = Product::all();
 
-        $product = Product::where('store_type_id', $request)
-                   ->where('genre_id', $request)
+        $product = Product::where('store_type_id', $request->store_type_id)
+                   ->where('genre_id', $request->genre_id)
                    ->get();
+                
   
         return view('product_management.index', compact('store_type_id', 'genre_id', 'product_managements', 'product'));
+        
     }
 
 
