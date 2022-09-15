@@ -7,12 +7,11 @@ use App\Contact;
 
 class ContactController extends Controller
 {
-    public function index(){
+    public function index() {
         return view('contact.index');
         }
     
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
  
           $post = new Contact();
           //$post->name = $request->name;
@@ -25,7 +24,7 @@ class ContactController extends Controller
           return view('contact.finishadd');
     }
     
-    public function finishadd(){
+    public function finishadd() {
         return view('contact.finishadd');
         }
 }

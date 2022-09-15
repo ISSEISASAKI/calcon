@@ -7,12 +7,11 @@ use App\StoreType;
 
 class StoreTypeManagementController extends Controller
 {
-    public function add(){
+    public function add() {
         return view('storetype_management.add');
     }
 
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
  
           $post = new StoreType();
           $post->name = $request->name;
@@ -23,19 +22,18 @@ class StoreTypeManagementController extends Controller
           return view('storetype_management.finishadd');
     }
 
-    public function finishadd(){
+    public function finishadd() {
         return view('storetype_management.finishadd');
     }
 
-    public function edit(Request $request){
+    public function edit(Request $request) {
         $store_type_id = $request -> store_type_id;
 
         return view('storetype_management.edit', compact('store_type_id'));
     }
 
-    public function update(Request $request){
-        $store_type_id = $request -> store_type_id;
-        //$store_type_id = stdClass();   
+    public function update(Request $request) {
+        $store_type_id = $request -> store_type_id; 
 
         
         $store_type_managements = StoreType::find($store_type_id);

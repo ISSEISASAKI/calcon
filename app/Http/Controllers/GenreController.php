@@ -8,7 +8,7 @@ use App\StorType;
 
 class GenreController extends Controller
 {
-    public function index(Request $request){
+    public function index(Request $request) {
         $store_type_id = $request -> store_type_id;
         $genres = Genre::all();
 

@@ -7,9 +7,8 @@ use App\StoreType;
 
 class DashboardController extends Controller
 {
-    public function index(){
+    public function index() {
         $store_type_managements = StoreType::all(); 
-        //$store_type_managements = Store_type_management:all();
 
 
 
@@ -18,7 +17,7 @@ class DashboardController extends Controller
 
 
 
-    public function destroy(Request $request){
+    public function destroy(Request $request) {
         $store_type_id = $request -> store_type_id;
         $store_type_managements = StoreType::find($store_type_id);
     

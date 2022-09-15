@@ -14,8 +14,6 @@
         </div>
         <div class="text-center mt-5">
           <button class="btn btn-primary" type="submit">送信</button>
-
-   
         </div>
       </form>
     </div>

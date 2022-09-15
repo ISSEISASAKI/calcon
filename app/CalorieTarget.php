@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class CalorieTarget extends Model
 {
-    protected $fillable = ['calorie'];
+    //protected $fillable = ['calorie'];
 }

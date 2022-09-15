@@ -7,12 +7,22 @@ use App\Product;
 
 class ProductController extends Controller
 {
-    public function index(Request $request){
+    public function index(Request $request) {
         $store_type_id = $request->store_type_id;
         $genre_id = $request->genre_id;
-        $products = Product::all();
+
+        $products = Product::where('store_type_id', $request->store_type_id)
+        ->where('genre_id', $request->genre_id)
+        ->get();
 
         return view('product.index', compact('store_type_id', 'genre_id', 'products'));
+    }
+
+    public function finishadd(Request $request) {
+        $product_alls = $request->all;
+
+
+        return view('product.finishadd', compact('product_alls'));
     }
     
 }

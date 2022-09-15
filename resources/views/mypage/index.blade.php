@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('content')>
+@section('content')
 <div class="text-center mt-5">
     <h1>マイページ</h1><br>
   <div class="mt-4">

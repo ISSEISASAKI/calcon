@@ -11,10 +11,12 @@
 |
 */
 //トップページ
-Route::get('/', 'TopPageController@index');
+Route::get('/', 'TopPageController@index') -> name('toppage.index');
 Route::get('/toppage/ranking', 'TopPageController@ranking') -> name('toppage.ranking');
+//摂取カロリー
 Route::get('/toppage/calorie_management', 'CalorieManagementController@index') -> name('calorie_management.index');
-//Route::get('/toppage/calorie_management', 'CalorieManagementController@index') -> name('calorie_management.index');
+
+
 
 
 //マイページ
@@ -25,8 +27,9 @@ Route::get('/mypage/editmember', 'MyPageController@editmember') -> name('mypage.
 
 //目標カロリー登録画面
 Route::get('/mypage/calorie_target', 'CalorieTargetController@index') -> name('calorie_target.index');
-Route::post('/mypage/calorie_target/finishadd', 'CalorieTargetController@store') -> name('calorie_target.store');
+Route::post('/mypage/calorie_target/finishadd', 'CalorieTargetController@update') -> name('calorie_target.update');
 Route::get('/mypage/calorie_target/finishadd', 'CalorieTargetController@finishadd') -> name('calorie_target.finishadd');
+
 
 //コンビニ購入履歴
 Route::get('/mypage/purchasehistory', 'MyPageController@purchasehistory') -> name('mypage.purchasehistory');
@@ -85,6 +88,7 @@ Route::post('product_management/destroy', 'ProductManagementController@destroy')
 
 //商品ページ
 Route::get('/product/index', 'ProductController@index') -> name('product.index');
+Route::post('/product/finishadd', 'ProductController@finishadd') -> name('product.finishadd');
 
 
 

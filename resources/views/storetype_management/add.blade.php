@@ -10,12 +10,10 @@
         <div class="mb-3">
           <h1 class="text-center">コンビニ名追加画面</h1>
           <label class="mt-5">コンビニ名</label>
-          <input type="text" name="name" class="form-control align-self-center" placeholder="Name" value="">
+          <input type="text" name="name" class="form-control align-self-center" placeholder="Name" value="" required>
         </div>
         <div class="text-center mt-5">
           <button class="btn btn-primary" type="submit">追加</button>
-
-   
         </div>
       </form>
     </div>

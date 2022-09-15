@@ -7,19 +7,18 @@ use App\Genre;
 
 class GenreManagementController extends Controller
 {
-    public function index(Request $request){
+    public function index(Request $request) {
         $store_type_id = $request -> store_type_id;
         $genre_managements = Genre::all();
  
         return view('genre_management.index', compact('store_type_id', 'genre_managements'));
     }
 
-    public function add(){
+    public function add() {
         return view('genre_management.add');
     }
 
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
  
           $post = new Genre();
           $post->name = $request->name;
@@ -29,17 +28,17 @@ class GenreManagementController extends Controller
           return view('genre_management.finishadd');
     }
 
-    public function finishadd(){
+    public function finishadd() {
         return view('genre_management.finishadd');
     }
 
-    public function edit(Request $request){
+    public function edit(Request $request) {
         $store_type_id = $request -> store_type_id;
 
         return view('genre_management.edit', compact('store_type_id'));
     }
 
-    public function update(Request $request){
+    public function update(Request $request) {
         $store_type_id = $request -> store_type_id;
         //$store_type_id = stdClass();   
 
@@ -54,7 +53,7 @@ class GenreManagementController extends Controller
         return view('genre_management.index', compact('genre_managements', 'store_type_id'));
     }
 
-    public function destroy(Request $request){
+    public function destroy(Request $request) {
         $store_type_id = $request -> store_type_id;
         $genre_managements = Genre::find($store_type_id);
     
