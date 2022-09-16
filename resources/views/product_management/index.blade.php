@@ -10,7 +10,7 @@
         <label><input class="mr-2" type="checkbox" name="product_id[]" value="{{ $product_management['id'] }}">{{ $product_management['name'] }}</label><br>
         <label>{{ $product_management['price'] }}円</label><br>
         <label>{{ $product_management['calorie'] }}cal</label><br>
-        <img src="{{ asset('img/' .$product_management->img_filename) }}" class="img-thumbnail"><br>
+        <img src="{{ Storage::url($product_management->img_filename) }}" width="25%" class="img-thumbnail"><br>
         <a class="btn btn-secondary mt-1" href="{{ route('product_management.edit', ['product_id' => $product_management['id']]) }}">編集</a><br>
         <!--できたらjavascriptで削除ボタンを下に-->
       @endforeach
@@ -20,7 +20,7 @@
   </div>
 </div>
 
-<form method = "POST" action="{{ route('product_management.store') }}">
+<form method = "POST" action="{{ route('product_management.store') }}" enctype="multipart/form-data">
 @csrf
 <div class="container">
   <div class="row justify-content-md-center mt-5">

@@ -6,10 +6,10 @@
   @csrf
   @foreach($products as $product)
   <div class="form-group">
-    <label><input class="mr-2" type="checkbox" name="all[]" value="{{ $product['name'] }}">{{ $product['name'] }}</label><br>
-    <label><input type="hidden" name="all[]" value="{{ $product['calorie'] }}">{{ $product['calorie'] }}cal</label><br>
-    <label><input type="hidden" name="all[]" value="{{ $product['price'] }}">{{ $product['price'] }}円</label><br>
-    <img src="{{ asset('img/' .$product->img_filename) }}" class="img-thumbnail">
+    <label><input class="mr-2" type="checkbox" name="product_id[]" value="{{ $product['id'] }}">{{ $product['name'] }}</label><br>
+    <label>{{ $product['calorie'] }}cal</label><br>
+    <label>{{ $product['price'] }}円</label><br>
+    <img src="{{ Storage::url($product->img_filename) }}" width="25%" class="img-thumbnail">
   @endforeach
   </div>
   <button type="submit" class="btn btn-primary mt-4">送信</button>

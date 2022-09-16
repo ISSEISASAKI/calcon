@@ -23,7 +23,13 @@ class ProductManagementController extends Controller
 
 
     public function store(Request $request) {
- 
+          // 画像フォームでリクエストした画像を取得
+          $img = $request->img_filename;
+          // storage > public > img配下に画像が保存される
+          $path = $img->store('img','public');
+
+
+          //productsテーブルへ保存処理 
           $post = new Product();
           $post->name = $request->name;
           $post->price = $request->price;
@@ -31,7 +37,7 @@ class ProductManagementController extends Controller
           $post->store_type_id = $request->store_type_id;
           $post->genre_id = $request->genre_id;
           $post->admin_id = 1;
-          $post->img_filename = $request->img_filename;
+          $post->img_filename = $path;
           $post->save();
   
           return view('product_management.finishadd');

@@ -19,7 +19,7 @@ class ProductController extends Controller
     }
 
     public function finishadd(Request $request) {
-        $product_alls = $request->all;
+        $product_id = $request->product_id;
 
 
         return view('product.finishadd', compact('product_alls'));
