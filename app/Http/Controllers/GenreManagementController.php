@@ -14,22 +14,28 @@ class GenreManagementController extends Controller
         return view('genre_management.index', compact('store_type_id', 'genre_managements'));
     }
 
-    public function add() {
-        return view('genre_management.add');
+    public function add(Request $request) {
+        $store_type_id = $request -> store_type_id;
+        return view('genre_management.add', compact('store_type_id'));
     }
 
     public function store(Request $request) {
- 
-          $post = new Genre();
-          $post->name = $request->name;
-          $post->admin_id = 1;
-          $post->save();
+        $store_type_id = $request -> store_type_id;
+
+        $post = new Genre();
+        $post->name = $request->name;
+        $post->admin_id = 1;
+        $post->save();
   
-          return view('genre_management.finishadd');
+          
+        return view('genre_management.finishadd', compact('store_type_id'));
     }
 
-    public function finishadd() {
-        return view('genre_management.finishadd');
+    public function finishadd(Request $request) {
+        $store_type_id = $request -> store_type_id;
+        dd($store_type_id);
+
+        return view('genre_management.finishadd', compact('store_type_id'));
     }
 
     public function edit(Request $request) {
@@ -55,8 +61,8 @@ class GenreManagementController extends Controller
 
     public function destroy(Request $request) {
         $store_type_id = $request -> store_type_id;
+
         $genre_managements = Genre::find($store_type_id);
-    
         $genre_managements->delete();
 
         $genre_managements = Genre::all();

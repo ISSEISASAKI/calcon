@@ -19,7 +19,7 @@ class MyPageController extends Controller
 
     
     public function purchasehistory() {
-        return view('mypage.purchasehistory.index');
+        return view('mypage.purchase_history.index');
     }
     
     //セブンイレブン購入履歴

@@ -9,9 +9,11 @@ use App\Product;
 class ProductManagementController extends Controller
 {
     public function index(Request $request) {
+        //URLのstore_type_idとgenre_id取得
         $store_type_id = $request->store_type_id;
         $genre_id = $request->genre_id;
 
+        //URLのstore_type_idとgenre_idをproductsテーブルから検索処理
         $product_managements = Product::where('store_type_id', $request->store_type_id)
                    ->where('genre_id', $request->genre_id)
                    ->get();
@@ -23,53 +25,72 @@ class ProductManagementController extends Controller
 
 
     public function store(Request $request) {
-          // 画像フォームでリクエストした画像を取得
-          $img = $request->img_filename;
-          // storage > public > img配下に画像が保存される
-          $path = $img->store('img','public');
+        $store_type_id = $request->store_type_id;
+        $genre_id = $request->genre_id;
+        // 画像フォームでリクエストした画像を取得
+        $img = $request->img_filename;
+        // storage > public > img配下に画像が保存される
+        $path = $img->store('img','public');
 
 
           //productsテーブルへ保存処理 
-          $post = new Product();
-          $post->name = $request->name;
-          $post->price = $request->price;
-          $post->calorie = $request->calorie;
-          $post->store_type_id = $request->store_type_id;
-          $post->genre_id = $request->genre_id;
-          $post->admin_id = 1;
-          $post->img_filename = $path;
-          $post->save();
+        $post = new Product();
+        $post->name = $request->name;
+        $post->price = $request->price;
+        $post->calorie = $request->calorie;
+        $post->store_type_id = $request->store_type_id;
+        $post->genre_id = $request->genre_id;
+        $post->admin_id = 1;
+        $post->img_filename = $path;
+        $post->save();
   
-          return view('product_management.finishadd');
+        return view('product_management.finishadd', compact('store_type_id', 'genre_id'));
     }
 
-    public function finishadd() {
-        return view('product_management.finishadd');
+    public function finishadd(Request $request) {
+        $store_type_id = $request->store_type_id;
+        $genre_id = $request->genre_id;
+        
+        return view('product_management.finishadd', compact('store_type_id', 'genre_id'));
     }
 
     public function edit(Request $request) {
+        $store_type_id = $request->store_type_id;
+        $genre_id = $request->genre_id;
         $product_id = $request->product_id;
 
         return view('product_management.edit', compact('product_id'));
     }
 
     public function update(Request $request) {
+        $store_type_id = $request->store_type_id;
+        $genre_id = $request->genre_id;
         $product_id = $request->product_id;
-
         
         $product_managements = Product::find($product_id);
         $product_managements->name = $request->name;
         $product_managements->save();
 
-        $product_managements = Product::all();        
+        $product_managements = Product::all();
+        
+        $product_managements = Product::where('store_type_id', $request->store_type_id)
+        ->where('genre_id', $request->genre_id)
+        ->get();
 
 
-        return redirect()->route('dashboard.index', compact('product_managements'));
+        return redirect()->route('product_management.index', compact('product_managements'));
     }
 
     public function destroy(Request $request) {
         $product_id = $request->product_id;
-        dd($product_id);
+
+        // 商品画像ファイルへのパスを取得
+        $path = $request->img_filename;
+        
+        // ファイルが登録されていれば削除
+        if ($path !== '') {
+            \Storage::disk('public')->delete($path);
+        }
 
         //product_idで渡ったデータは複数なのでforeachで一つにする
         foreach ($product_id as $id) {
@@ -81,7 +102,7 @@ class ProductManagementController extends Controller
 
         $product_managements = Product::all();
 
-        return redirect()->route('dashboard.index', compact('product_managements'));
+        return redirect()->route('product_management.index', compact('product_managements'));
     }
     
     

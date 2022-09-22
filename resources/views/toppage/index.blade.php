@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container text-center mt-5">
+<h1>コンビニ選択画面</h1>
   @foreach($store_types as $store_type)
     <div class="mt-4">
       <a class="h2" href="{{ route('genre.index', ['store_type_id' => $store_type['id']]) }}">{{ $store_type['name'] }}</a>

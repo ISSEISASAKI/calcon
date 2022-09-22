@@ -23,7 +23,7 @@ Route::get('/toppage/calorie_management', 'CalorieManagementController@index') -
 Route::get('/mypage', 'MyPageController@index') -> name('mypage');
 Route::get('/mypage/logout', 'MyPageController@logout') ->name('mypage.logout');
 Route::get('/mypage/editmember', 'MyPageController@editmember') -> name('mypage.editmember');
-
+Route::get('/mypage/purchase_history', 'MyPageController@purchase_history') -> name('mypage.purchase_history');
 
 //目標カロリー登録画面
 Route::get('/mypage/calorie_target', 'CalorieTargetController@index') -> name('calorie_target.index');

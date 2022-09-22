@@ -13,7 +13,7 @@
           <input type="text" name="name" class="form-control align-self-center" placeholder="Name" value="" required>
         </div>
         <div class="text-center mt-5">
-          <button class="btn btn-primary" type="submit">追加</button>
+          <button class="btn btn-primary" type="submit">コンビニ名追加</button>
         </div>
       </form>
     </div>

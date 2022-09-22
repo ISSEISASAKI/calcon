@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\CalorieManagement;
 
 class ProductController extends Controller
 {
@@ -21,8 +22,11 @@ class ProductController extends Controller
     public function finishadd(Request $request) {
         $product_id = $request->product_id;
 
+    
+        $products = Product::find($product_id);
 
-        return view('product.finishadd', compact('product_alls'));
+
+        return view('product.finishadd', compact('products'));
     }
     
 }
