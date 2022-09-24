@@ -4,7 +4,7 @@
 <div class="container mt-5 pt-5">
   <div class="row">
     <div class="col-md-6 offset-md-3">
-    <form method = "POST" action="{{ route('contact.store') }}">
+    <form method = "POST" action="{{ route('contact.confirmation') }}">
         <div class="mb-3">
         @csrf
           <h1 class="text-center">お問合せ</h1>

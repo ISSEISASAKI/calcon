@@ -18,7 +18,8 @@
     </div>
   </div>
   @endforeach
-  <a type="button" class="btn btn-primary mt-5" href="{{ route('storetype_management.add') }}" role="button">コンビニ名追加</a>
+  <a type="button" class="btn btn-primary mt-5" href="{{ route('storetype_management.add') }}" role="button">コンビニ名追加</a><br>
+  <a type="button" class="btn btn-primary mt-2" href="{{ route('dashboard.contact') }}" role="button">お問い合わせ内容確認</a>
 </div>
 @endsection
 

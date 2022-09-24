@@ -12,7 +12,6 @@ class GenreController extends Controller
         $store_type_id = $request -> store_type_id;
         $genres = Genre::all();
 
-
         return view('genre.index', compact('store_type_id', 'genres'));
     }
     

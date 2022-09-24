@@ -10,20 +10,29 @@ class ContactController extends Controller
     public function index() {
         return view('contact.index');
         }
+
+    public function confirmation(Request $request) {
+        $name = $request->name;
+        $email = $request->email;
+        $contact = $request->contact;
+    
+        return view('contact.confirmation', compact('name', 'email', 'contact'));
+        }
     
     public function store(Request $request) {
  
-          $post = new Contact();
-          //$post->name = $request->name;
-          $post->email = $request->email;
-          $post->contact = $request->contact;
-          $post->user_id = 1;
-          $post->response_flg = TRUE;
-          $post->save();
+        $contacts = new Contact();
+        //$post->name = $request->name;
+        $contacts->email = $request->email;
+        $contacts->contact = $request->contact;
+        $contacts->user_id = 1;
+        $contacts->response_flg = TRUE;
+        $contacts->save();
   
-          return view('contact.finishadd');
+        return view('contact.finishadd');
     }
-    
+
+
     public function finishadd() {
         return view('contact.finishadd');
         }

@@ -38,7 +38,7 @@ Route::get('/mypage/purchasehistory/se_purchasehistory', 'MyPageController@se_pu
 
 //トップページ管理
 Route::get('/dashboard', 'DashboardController@index') -> name('dashboard.index');
-
+Route::get('/dashboard/contact', 'DashboardController@contact') -> name('dashboard.contact');
 
 //コンビニ名追加
 Route::get('/add', 'StoreTypeManagementController@add') -> name('storetype_management.add');
@@ -63,6 +63,7 @@ Route::get('/genre_management/add/finishadd', 'GenreManagementController@finisha
 //ジャンル編集
 Route::get('/genre_management/edit', 'GenreManagementController@edit') -> name('genre_management.edit');
 Route::post('/genre_management/update', 'GenreManagementController@update') -> name('genre_management.update');
+Route::get('/genre_management/edit/finishedit', 'GenreManagementController@finishedit') -> name('genre_management.finishedit');
 
 //ジャンル削除
 Route::post('genre_management/destroy', 'GenreManagementController@destroy') -> name('genre_management.destroy');
@@ -81,6 +82,7 @@ Route::get('/product_management/finishadd', 'ProductManagementController@finisha
 //商品編集
 Route::get('/product_management/edit', 'ProductManagementController@edit') -> name('product_management.edit');
 Route::post('/product_management/update', 'ProductManagementController@update') -> name('product_management.update');
+Route::get('/product_management/finishedit', 'ProductManagementController@finishedit') -> name('product_management.finishedit');
 
 //商品削除
 Route::post('product_management/destroy', 'ProductManagementController@destroy') -> name('product_management.destroy');
@@ -94,6 +96,9 @@ Route::post('/product/finishadd', 'ProductController@finishadd') -> name('produc
 
 //お問い合わせ
 Route::get('/contact', 'ContactController@index') -> name('contact.index');
+//お問い合わせ内容確認
+Route::post('/contact/confirmation', 'ContactController@confirmation') -> name ('contact.confirmation');
 //お問い合わせ内容送信
 Route::post('/contact/finishadd', 'ContactController@store') -> name('contact.store');
+//お問い合わせ内容完了
 Route::get('/contact/finishadd', 'ContactController@finishadd') -> name ('contact.finishadd');

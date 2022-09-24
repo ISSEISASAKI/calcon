@@ -9,8 +9,8 @@
   </div>
   <div class="container">
     <div class="row justify-content-center">
-      <a class="btn btn-secondary" href="{{ route('genre_management.edit', ['store_type_id' => $genre_management['id']]) }}">編集</a>
-      <form action="{{ route('genre_management.destroy', ['store_type_id' => $genre_management['id']]) }}"  method="POST" onsubmit="if(confirm('本当に削除しますか？')) { return true } else {return false };">
+      <a class="btn btn-secondary" href="{{ route('genre_management.edit', ['store_type_id' => $store_type_id, 'id' => $genre_management['id']]) }}">編集</a>
+      <form action="{{ route('genre_management.destroy', ['store_type_id' =>  $store_type_id, 'id' => $genre_management['id']]) }}"  method="POST" onsubmit="if(confirm('本当に削除しますか？')) { return true } else {return false };">
       @csrf
       <button type="submit" class="btn btn-danger ml-1">削除</button>
       </form>

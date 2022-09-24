@@ -14,8 +14,8 @@ class ProductManagementController extends Controller
         $genre_id = $request->genre_id;
 
         //URLのstore_type_idとgenre_idをproductsテーブルから検索処理
-        $product_managements = Product::where('store_type_id', $request->store_type_id)
-                   ->where('genre_id', $request->genre_id)
+        $product_managements = Product::where('store_type_id', $store_type_id)
+                   ->where('genre_id', $genre_id)
                    ->get();
                 
   
@@ -23,7 +23,7 @@ class ProductManagementController extends Controller
         
     }
 
-
+    //商品追加処理
     public function store(Request $request) {
         $store_type_id = $request->store_type_id;
         $genre_id = $request->genre_id;
@@ -47,28 +47,49 @@ class ProductManagementController extends Controller
         return view('product_management.finishadd', compact('store_type_id', 'genre_id'));
     }
 
+    //商品追加完了画面
     public function finishadd(Request $request) {
         $store_type_id = $request->store_type_id;
         $genre_id = $request->genre_id;
-        
+
         return view('product_management.finishadd', compact('store_type_id', 'genre_id'));
     }
 
+    //商品編集画面
     public function edit(Request $request) {
         $store_type_id = $request->store_type_id;
         $genre_id = $request->genre_id;
         $product_id = $request->product_id;
 
-        return view('product_management.edit', compact('product_id'));
+        $product_managements = Product::find($product_id);
+
+        return view('product_management.edit', compact('store_type_id', 'genre_id', 'product_id', 'product_id', 'product_managements'));
     }
 
+    //商品編集完了画面
+    public function finishedit(Request $request) {
+        $store_type_id = $request->store_type_id;
+        $genre_id = $request->genre_id;
+        $product_id = $request->product_id;
+    
+        return view('product_management.finishedit', compact('store_type_id', 'genre_id'));
+    }
+
+    //商品編集処理
     public function update(Request $request) {
         $store_type_id = $request->store_type_id;
         $genre_id = $request->genre_id;
         $product_id = $request->product_id;
+
+        $img = $request->img_filename;
+        // storage > public > img配下に画像が保存される
+        $path = optional($img)->store('img','public');
         
         $product_managements = Product::find($product_id);
         $product_managements->name = $request->name;
+        $product_managements->price = $request->price;
+        $product_managements->calorie = $request->calorie;
+        $product_managements->img_filename = $path;
         $product_managements->save();
 
         $product_managements = Product::all();
@@ -78,10 +99,13 @@ class ProductManagementController extends Controller
         ->get();
 
 
-        return redirect()->route('product_management.index', compact('product_managements'));
+        return redirect()->route('product_management.finishedit', compact('product_managements', 'store_type_id', 'genre_id'));
     }
 
+    //商品削除処理
     public function destroy(Request $request) {
+        $store_type_id = $request->store_type_id;
+        $genre_id = $request->genre_id;
         $product_id = $request->product_id;
 
         // 商品画像ファイルへのパスを取得
@@ -102,7 +126,7 @@ class ProductManagementController extends Controller
 
         $product_managements = Product::all();
 
-        return redirect()->route('product_management.index', compact('product_managements'));
+        return redirect()->route('product_management.index', compact('product_managements', 'store_type_id', 'genre_id'));
     }
     
     
