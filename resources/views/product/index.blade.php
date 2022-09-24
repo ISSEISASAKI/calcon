@@ -3,7 +3,10 @@
 @section('content')
 <div class="container text-center mt-5">
 <h1>商品選択画面</h1>
-<form method="POST" action="{{ route('product.finishadd') }}" class="h2">
+@if($products->isEmpty())
+<h1 class="font-weight-bold text-center mt-4">NO PRODUCT</h1>
+@else
+<form method="POST" action="{{ route('product.finishadd', ['store_type_id' => $store_type_id, 'genre_id' => $genre_id]) }}" class="h2">
   @csrf
   @foreach($products as $product)
   <div class="form-group">
@@ -19,4 +22,5 @@
     <p>選択cal</p>
   </div>
 </div>
+@endif
 @endsection

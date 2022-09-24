@@ -4,25 +4,50 @@
 <div class="text-center">
   <h1>商品選択画面</h1>
 </div>
-<div class="container">
-  <div class="row">
-    <form method="POST" action="{{ route('product_management.destroy', ['store_type_id' => $store_type_id, 'genre_id' => $genre_id]) }}" onsubmit="if(confirm('本当に削除しますか？')) { return true } else {return false };" class="h2 mt-4 ml-4 mb-5">
-    <div class="form-group">
-      @csrf
+@if($product_managements->isEmpty())
+<h1 class="font-weight-bold text-center mt-4">NO PRODUCT</h1>
+@else
+  <form method="POST" action="{{ route('product_management.destroy', ['store_type_id' => $store_type_id, 'genre_id' => $genre_id]) }}" onsubmit="if(confirm('本当に削除しますか？')) { return true } else {return false };" class="h2 mt-4 ml-4 mb-5">
+  @csrf
+  <div class="container">
+    <div class="row">
       @foreach($product_managements as $product_management)
-        <label><input class="mr-2" type="checkbox" name="product_id[]" value="{{ $product_management['id'] }}">{{ $product_management['name'] }}</label><br>
-        <input type="hidden" name="img_filename" value="{{ $product_management['img_filename'] }}">
-        <label>{{ $product_management['price'] }}円</label><br>
-        <label>{{ $product_management['calorie'] }}cal</label><br>
-        <img src="{{ Storage::url($product_management['img_filename']) }}" width="25%" class="img-thumbnail"><br>
-        <a class="btn btn-secondary mt-1" href="{{ route('product_management.edit', ['store_type_id' => $store_type_id, 'genre_id' => $genre_id, 'product_id' => $product_management['id']]) }}">編集</a><br>
-        <!--できたらjavascriptで削除ボタンを下に-->
+      <table class="table table-borderless text-center">
+        <thead>
+          <tr>
+            <th style="width: 60%">
+            <label><input class="mr-2" type="checkbox" name="product_id[]" value="{{ $product_management['id'] }}">{{ $product_management['name'] }}</label>
+            </th>
+            <td class="text-left">
+              <a class="btn btn-secondary" href="{{ route('product_management.edit', ['store_type_id' => $store_type_id, 'genre_id' => $genre_id, 'product_id' => $product_management['id']]) }}">編集</a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label>{{ $product_management['price'] }}円</label>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label>{{ $product_management['calorie'] }}cal</label>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 10%">
+              <input type="hidden" name="img_filename" value="{{ $product_management['img_filename'] }}">
+              <img src="{{ Storage::url($product_management['img_filename']) }}" width="30%" class="img-thumbnail">
+            </td>
+          </tr>
+        </thead>
+      </table>
       @endforeach
     </div>
-      <button type="submit" class="btn btn-danger mt-1" required>削除</button>
-    </form>
   </div>
-</div>
+  <div class="text-center">
+      <button type="submit" class="btn btn-danger mt-5" required>削除</button>
+  </div>
+  </form>
+  @endif
 
 <form method = "POST" action="{{ route('product_management.store', ['store_type_id' => $store_type_id, 'genre_id' => $genre_id]) }}" enctype="multipart/form-data">
 @csrf

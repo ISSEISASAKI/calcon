@@ -10,7 +10,7 @@
       <h3>500cal</h3><br>
       @foreach($calorie_targets as $calorie_target)
       <h2>本日目標カロリー</h2>
-      <h3>{{ $calorie_target['calorie'] }}</h3><br>
+      <h3>{{ $calorie_target['calorie'] }}cal</h3><br>
       @endforeach
       <h2>本日合計金額</h2>
       <h3>10,000円</h3>
