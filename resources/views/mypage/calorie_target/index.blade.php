@@ -12,11 +12,11 @@
         @csrf
         <div class="mb-3">
           <h2 class="text-center">目標カロリー</h2>
-              <input type="number" name="calorie" min="0" value="{{ $calorie_target['calorie'] }}"><p>cal</p>
-      @endforeach
-          <button class="btn btn-primary" type="submit">登録</button>
+              <input type="number" name="calorie" class="form-control" min="0" value="{{ $calorie_target['calorie'] }}"><p>cal</p>
+        <button class="btn btn-primary" type="submit">登録</button>
         </div>
       </form>
+      @endforeach
     </div>
   </div>
 </div>
