@@ -111,10 +111,6 @@ class ProductManagementController extends Controller
         // 商品画像ファイルへのパスを取得
         $path = $request->img_filename;
         
-        // ファイルが登録されていれば削除
-        if ($path !== '') {
-            \Storage::disk('public')->delete($path);
-        }
 
         //product_idで渡ったデータは複数なのでforeachで一つにする
         foreach ($product_id as $id) {
@@ -122,6 +118,15 @@ class ProductManagementController extends Controller
         $product_managements = Product::find($id);
         $product_managements->delete();
 
+        }
+
+
+        foreach ($path as $img) {
+    
+        if ($img !== '') {
+            \Storage::disk('public')->delete($img);
+        }
+        
         }
 
         $product_managements = Product::all();

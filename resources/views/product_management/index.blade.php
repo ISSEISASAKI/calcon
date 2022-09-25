@@ -16,7 +16,7 @@
         <thead>
           <tr>
             <th style="width: 60%">
-            <label><input class="mr-2" type="checkbox" name="product_id[]" value="{{ $product_management['id'] }}">{{ $product_management['name'] }}</label>
+            <label><input class="mr-2" type="checkbox" name="product_id[]" value="{{ $product_management['id'] }}" required>{{ $product_management['name'] }}</label>
             </th>
             <td class="text-left">
               <a class="btn btn-secondary" href="{{ route('product_management.edit', ['store_type_id' => $store_type_id, 'genre_id' => $genre_id, 'product_id' => $product_management['id']]) }}">編集</a>
@@ -34,7 +34,7 @@
           </tr>
           <tr>
             <td style="width: 10%">
-              <input type="hidden" name="img_filename" value="{{ $product_management['img_filename'] }}">
+              <input type="hidden" name="img_filename[]" value="{{ $product_management['img_filename'] }}">
               <img src="{{ Storage::url($product_management['img_filename']) }}" width="30%" class="img-thumbnail">
             </td>
           </tr>
@@ -59,9 +59,9 @@
       <label>Name</label>
       <input type="name" name="name" class="form-control" placeholder="Name" value="" required>
       <label>Price</label>
-      <input type="text" name="price" class="form-control" placeholder="Price" value="" required>
+      <input type="number" name="price" class="form-control" placeholder="Price" value="" required>
       <label>Calorie</label>
-      <input type="text" name="calorie" class="form-control" placeholder="Cal" value="" required><br>
+      <input type="number" name="calorie" class="form-control" placeholder="Cal" value="" required><br>
     <div class="text-center">
       <input type="file" class="ml-5" name="img_filename" required><br>
       <button class="btn btn-primary col-5 mt-3" type="submit">商品名追加</button><br>
