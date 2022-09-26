@@ -27,6 +27,9 @@ Route::get('/mypage/purchase_history', 'MyPageController@purchase_history') -> n
 
 //目標カロリー登録画面
 Route::get('/mypage/calorie_target', 'CalorieTargetController@index') -> name('calorie_target.index');
+//目標カロリー登録
+Route::post('/mypage/calorie_target/firstadd', 'CalorieTargetController@store') -> name('calorie_target.store');
+//目標カロリー編集
 Route::post('/mypage/calorie_target/finishadd', 'CalorieTargetController@update') -> name('calorie_target.update');
 Route::get('/mypage/calorie_target/finishadd', 'CalorieTargetController@finishadd') -> name('calorie_target.finishadd');
 

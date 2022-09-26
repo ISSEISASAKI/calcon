@@ -15,7 +15,7 @@
       <table class="table table-borderless text-center">
         <thead>
           <tr>
-            <th style="width: 60%">
+            <th>
             <label><input class="mr-2" type="checkbox" name="product_id[]" value="{{ $product_management['id'] }}" required>{{ $product_management['name'] }}</label>
             </th>
             <td class="text-left">
@@ -35,7 +35,7 @@
           <tr>
             <td style="width: 10%">
               <input type="hidden" name="img_filename[]" value="{{ $product_management['img_filename'] }}">
-              <img src="{{ Storage::url($product_management['img_filename']) }}" width="30%" class="img-thumbnail">
+              <img src="{{ Storage::url($product_management['img_filename']) }}" width="100%" class="img-thumbnail">
             </td>
           </tr>
         </thead>

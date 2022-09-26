@@ -13,16 +13,27 @@ class CalorieTargetController extends Controller
         return view('mypage.calorie_target.index', compact('calorie_targets'));
     }
 
-    public function update(Request $request) {
-        $user_id = $request->user_id;
+    public function store(Request $request) {
 
+        $post = new CalorieTarget();
+        $post->calorie = $request->calorie;
+        $post->user_id = 1;
+        $post->save();
+
+        $post = CalorieTarget::all();   
+          
+        return view('mypage.calorie_target.finishadd', compact('post'));
+    }
+
+    public function update(Request $request) {
+        $id = $request->id;
         
-        $post = CalorieTarget::find($user_id);
+        $post = CalorieTarget::find($id);
         $post->calorie = $request->calorie;
         $post->save();
 
         $post = CalorieTarget::all(); 
-          return view('mypage.calorie_target.finishadd');
+        return view('mypage.calorie_target.finishadd', compact('post'));
     }
 
     public function finishadd() {
