@@ -26,9 +26,10 @@ class CalorieTargetController extends Controller
     }
 
     public function update(Request $request) {
-        $id = $request->id;
+        $user = 1; 
         
-        $post = CalorieTarget::find($id);
+        $post = CalorieTarget::where('user_id', $user)
+        ->first();
         $post->calorie = $request->calorie;
         $post->save();
 

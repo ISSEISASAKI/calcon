@@ -15,14 +15,12 @@
       <button class="btn btn-primary" type="submit">送信</button>
       </form>
     @else
-    @foreach($calorie_targets as $calorie_target)
-      <form method = "POST" action="{{ route('calorie_target.update', ['id' => $calorie_target['id']]) }}">
+      <form method = "POST" action="{{ route('calorie_target.update') }}">
         @csrf
           <h2 class="text-center">目標カロリー</h2>
-            <input type="number" name="calorie" class="form-control" min="0" value="{{ $calorie_target['calorie'] }}"><p>cal</p>
+            <input type="number" name="calorie" class="form-control" min="0" value=" "><p>cal</p>
       <button class="btn btn-primary" type="submit">登録</button>
       </form>
-    @endforeach
     @endif
     </div>
   </div>
