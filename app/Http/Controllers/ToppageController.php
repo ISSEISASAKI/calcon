@@ -12,36 +12,28 @@ use Carbon\Carbon;
 class TopPageController extends Controller
 {
     public function index() {
+        $user_id = 1;
+        $today_calorie = 0;
         $store_types = StoreType::all();
-
-        $calorie_managements = CalorieManagement::all();
-                        
-        foreach ($calorie_managements as $item) {
-            $date = date_create($item->date);
-            $date = date_format($date , 'Y-m-d');
-            $item->date = $date;  
-        }
-
-        foreach ($calorie_managements as $calorie_management=>$product_id) {
-    
-            $product_calories = Product::find($product_id);
-
-            $product_calories = Product::all();
-
-        //if ($date == now()) {
-
-            $totals = Product::selectRaw('SUM(calorie) as total_calorie')
+        $calorie_managements = CalorieManagement::where('user_id', $user_id)
+            ->where('date', date('Y-m-d'))
             ->get();
 
-        //} else {
-          //  $totals = $product_id;
-       // }
-            
+        $products = [];
+        foreach ($calorie_managements as $calorie_management) {
+    
+            $products[] = Product::find($calorie_management['product_id']);
+
         }
 
+        foreach ($products as $product) {
+    
+            $today_calorie += $product['calorie'];
 
+        }
+   
             
-        return view('toppage.index', compact('store_types', 'calorie_managements', 'product_calories', 'totals'));
+        return view('toppage.index', compact('store_types', 'today_calorie'));
     }
     
     public function ranking() {

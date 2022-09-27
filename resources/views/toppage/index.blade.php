@@ -8,9 +8,9 @@
       <a class="h2" href="{{ route('genre.index', ['store_type_id' => $store_type['id']]) }}">{{ $store_type['name'] }}</a>
     </div>
   @endforeach
-  @foreach($totals as $total)
+</div>
+  <div class="text-center">
     <h1 class="font-weight-bold mt-5">本日摂取カロリー</h1>
-    <h1 class="font-weight-bold">{{ $total['total_calorie'] }}</h1>
+    <h1 class="font-weight-bold">{{ $today_calorie }}cal</h1>
   </div>
-  @endforeach
 @endsection

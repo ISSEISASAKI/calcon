@@ -6,7 +6,7 @@
   <div class="mt-4">
     <a class="h2" href="{{ route('mypage.editmember') }}">会員情報の編集</a><br>
 
-    <a class="h2" href="{{ route('mypage.purchasehistory') }}">購入履歴</a><br>
+    <a class="h2" href="{{ route('mypage.purchase_history') }}">購入履歴</a><br>
 
     <a class="h2" href="{{ route('calorie_target.index') }}">目標カロリー設定</a><br>
 

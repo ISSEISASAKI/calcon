@@ -2,15 +2,18 @@
 
 @section('content')
 <div class="container">
-  <div class="d-flex mt-5">
-     <a class="h2" href="http://127.0.0.1:8000/mypage/purchasehistory/se_purchasehistory">セブンイレブン</a>
-     <h2 class="mr-4">ファミリーマート</h2>
-     <h2 class="mr-4">ローソン</h2>
-     <h2 class="mr-4">デイリーヤマザキ</h2>
-     <h2 class="mr-4">ミニストップ</h2>
-  </div>
-  <div class="text-center">
-    <h2 class="mt-5">本日購入品</h2>
+  <div class="row justify-content-center">
+    <div class="col-5">
+  @foreach($store_types as $store_type)
+      <a class="h2" href="{{ route('mypage.store_type', ['store_type_id' => $store_type['id']]) }}">{{ $store_type['name'] }}</a><br>
+  @endforeach
+    </div>
+    <div class="col-7">
+      <h2 class="mt-5">本日購入品</h2>
+      @foreach($products as $product)
+      <h3>{{ $product['id'] }}</h3>
+      @endforeach
+    </div>
   </div>
 </div>
 @endsection
