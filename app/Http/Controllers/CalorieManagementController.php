@@ -17,7 +17,7 @@ class CalorieManagementController extends Controller
         $calorie_targets = CalorieTarget::where('user_id', $user_id)
                                 ->first();
         $calorie_managements = CalorieManagement::where('user_id', $user_id)
-                                //->where('date', date('Y-m-d'))
+                                ->where('date', date('Y-m-d'))
                                 ->get();
 
         $products = [];

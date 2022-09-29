@@ -24,17 +24,30 @@ class MyPageController extends Controller
         $user_id = 1;
         $store_types = StoreType::all();
         $calorie_managements = CalorieManagement::where('user_id', $user_id)
-            //->where('date', date('Y-m-d'))
+            ->where('date', date('Y-m-d'))
             ->get();
+        
+        if ($calorie_managements->isEmpty()) {
+            return view('mypage.purchase_history.index', compact('calorie_managements', 'store_types'));
+        } else {
 
-        $products = [];
+        $prpducts = [];
         foreach ($calorie_managements as $calorie_management) {
     
             $products[] = Product::find($calorie_management['product_id']);
 
         }
+
+ 
+        $store_names = [];
+        foreach ($products as $product) {
+    
+            $store_names[] = StoreType::find($product['store_type_id']);
+
+        }
         
-        return view('mypage.purchase_history.index', compact('store_types', 'products'));
+        return view('mypage.purchase_history.index', compact('store_types', 'products', 'store_names', 'calorie_managements'));
+        }
     }
 
     //購入履歴
@@ -54,19 +67,15 @@ class MyPageController extends Controller
         $calorie_managements = CalorieManagement::where('user_id', $user_id)
         ->get();
 
-
-        $products = [];
-        $calorie_dates = [];
+        //$prpducts = [];
         foreach ($calorie_managements as $calorie_management) {
     
-            $products[] = Product::find($calorie_management['product_id']);
-            $calorie_dates[] = $calorie_management['date'];
-
+            $products = Product::where('id', $calorie_management['product_id'])
+                ->where('store_type_id', $store_type_id)
+                ->get();
         }
 
-
-
-        return view('mypage.purchase_history.store_type', compact('store_name', 'products', 'calorie_dates'));
+        return view('mypage.purchase_history.store_type', compact('store_name', 'products'));
     }
 
     
