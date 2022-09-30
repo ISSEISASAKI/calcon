@@ -16,11 +16,10 @@
               <th>商品</th>
               <th>カロリー</th>
             </tr>
-            @foreach($products as $product)
+            @foreach($totals as [$date, $name])
             <tr class="text-center">
-              <td>{{ "#" }}</td>
-              <td>{{ $product['name'] }}</td>
-              <td>{{ $product['calorie'] }}</td>
+              <td>{{ $date['date'] }}</td>
+              <td>{{ $name['name'] }}</td>
             </tr>
             @endforeach
           </tbody>
