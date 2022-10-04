@@ -19,6 +19,7 @@ class TopPageController extends Controller
             ->where('date', date('Y-m-d'))
             ->get();
 
+
         $products = [];
         foreach ($calorie_managements as $calorie_management) {
     
@@ -26,11 +27,13 @@ class TopPageController extends Controller
 
         }
 
+
         foreach ($products as $product) {
     
             $today_calorie += $product['calorie'];
-
+            
         }
+
    
             
         return view('toppage.index', compact('store_types', 'today_calorie'));

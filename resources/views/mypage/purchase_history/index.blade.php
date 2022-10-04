@@ -23,10 +23,10 @@
               <th class="text-center">コンビニ</th>
               <th class="text-center">商品</th>
             </tr>
-            @foreach($totals as [$store_name, $product])
+            @foreach($totals as $item)
             <tr class="text-center">
-              <td>{{ $store_name['name'] }}</td>
-              <!--<td>{{ $product['name'] }}</td>-->
+              <td>{{ $item[0]['name'] }}</td>
+              <td>{{ $item[1]['name'] }}</td>
             </tr>
             @endforeach
           </tbody>

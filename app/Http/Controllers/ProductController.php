@@ -29,6 +29,7 @@ class ProductController extends Controller
             $post = new CalorieManagement();
             $post->product_id = $id;
             $post->date = date('Y-m-d');
+            $post->store_type_id = $store_type_id;
             $post->user_id = 1;
             $post->save();
     

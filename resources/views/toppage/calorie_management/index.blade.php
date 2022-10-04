@@ -1,16 +1,37 @@
-
 @extends('layouts.app')
 
 @section('content')
-  <div class="text-center mt-5">
-    <h1>摂取カロリー表示画面</h1>
-      <h2>摂取カロリー</h2>
-      <h3>{{ $today_calorie }}cal</h3><br>
-      <h2>本日摂取カロリーあと</h2>
-      <h3>{{ $calorie_targets['calorie'] - $today_calorie }}cal</h3><br>
-      <h2>本日目標カロリー</h2>
-      <h3>{{ $calorie_targets['calorie'] }}cal</h3><br>
-      <h2>本日合計金額</h2>
-      <h3>{{ $today_price }}円</h3>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <h2 >摂取カロリー表示画面</h2>
+        </div>
+        <div class="card-body">
+          <table class="table table-striped">
+          <tbody>
+            <tr>
+              <th class="text-left">摂取カロリー</th>
+              <td class="text-center">{{ $today_calorie }}cal</td>
+            </tr>
+            <tr>
+              <th class="text-left">本日摂取カロリーあと</th>
+              <td class="text-center">{{ $calorie_targets['calorie'] - $today_calorie }}cal</td>
+            </tr>
+            <tr>
+              <th class="text-left">本日摂取カロリー</th>
+              <td class="text-center">{{ $calorie_targets['calorie'] }}cal</td>
+            </tr>
+            <tr>
+              <th class="text-left">本日合計金額</th>
+              <td class="text-center">{{ $today_price }}円</td>
+            </tr>
+          </tbody>
+         </table>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
 @endsection
