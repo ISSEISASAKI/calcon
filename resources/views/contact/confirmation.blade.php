@@ -17,7 +17,7 @@
           <input type="hidden" name="contact" value="{{ $contact }}">
           <h4>{{ $contact }}</h4>
         <div class="text-center mt-5">
-          <a type="button" class="btn btn-secondary mr-5" onClick="history.back()">戻る</a>
+          <a type="button" class="btn btn-secondary mr-5" href="{{ route('contact.index') }}">お問い合わせ画面に戻る</a>
           <button class="btn btn-primary" type="submit">OK</button>
         </div>
       </form>

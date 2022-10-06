@@ -20,7 +20,7 @@
           <textarea name="contact" rows="10" cols="20" class="form-control" placeholder="文字を入力して下さい" value="" required></textarea>
         </div>
         <div class="text-center mt-5">
-          <a type="button" class="btn btn-secondary mr-5" onClick="history.back()">戻る</a>
+          <a type="button" class="btn btn-secondary mr-5" href="{{ route('toppage.index') }}">トップへ戻る</a>
           <button class="btn btn-primary" type="submit">送信</button>
         </div>
       </form>

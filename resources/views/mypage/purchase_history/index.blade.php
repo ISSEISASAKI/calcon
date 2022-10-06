@@ -14,7 +14,7 @@
           <h2 >本日購入品</h2>
         </div>
         @if($calorie_managements->isEmpty())
-        <h3 class="text-center">NO PRODUCT</h3>
+        <h3 class="text-center">データがありません</h3>
         @else
         <div class="card-body">
           <table class="table table-striped">
@@ -34,6 +34,9 @@
          @endif
         </div>
       </div>
+    </div>
+    <div class="text-center">
+      <a type="button" class="btn btn-secondary  mt-5" href="{{ route('mypage') }}" role="button">マイページへ戻る</a>
     </div>
   </div>
 </div>

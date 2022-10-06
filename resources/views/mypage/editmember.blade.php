@@ -23,8 +23,8 @@
           <input type="password" class="form-control" placeholder="Confirm password again">
         </div>
         <div class="text-center mt-5">
-          <a type="button" class="btn btn-secondary mr-5" href="{{ route('mypage') }}" role="button">戻る</a>
-          <a type="button" class="btn btn-primary ml-5" href="{{ route('mypage') }}" role="button">編集</a>
+          <a type="button" class="btn btn-secondary mr-5 col-4" href="{{ route('mypage') }}" role="button">マイページへ戻る</a>
+          <a type="button" class="btn btn-primary col-4" href="{{ route('mypage') }}" role="button">編集</a>
         </div>
       </form>
     </div>

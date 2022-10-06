@@ -16,9 +16,6 @@
                 <a class="nav-link" href="#">ログイン</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('toppage.ranking') }}">ランキング</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" href="{{ route('calorie_management.index') }}">摂取カロリー</a>
             </li>
             <li class="nav-item">

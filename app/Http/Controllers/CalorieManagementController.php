@@ -40,8 +40,10 @@ class CalorieManagementController extends Controller
             $today_calorie += $product['calorie'];
 
         } 
+
+        $remaining = $calorie_targets['calorie'] - $today_calorie; 
   
-        return view('toppage.calorie_management.index', compact('calorie_targets', 'today_calorie', 'today_price'));
+        return view('toppage.calorie_management.index', compact('calorie_targets', 'today_calorie', 'today_price', 'remaining'));
     }
 
     public function add(Request $request) {

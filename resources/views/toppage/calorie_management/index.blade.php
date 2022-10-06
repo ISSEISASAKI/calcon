@@ -17,7 +17,11 @@
             </tr>
             <tr>
               <th class="text-left">本日摂取カロリーあと</th>
-              <td class="text-center">{{ $calorie_targets['calorie'] - $today_calorie }}cal</td>
+              @if($remaining <= -1 )
+              <td class="text-center text-danger">{{ $remaining }}cal</td>
+              @else
+              <td class="text-center">{{ $remaining }}cal</td>
+              @endif
             </tr>
             <tr>
               <th class="text-left">本日摂取カロリー</th>

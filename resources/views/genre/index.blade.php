@@ -12,5 +12,8 @@
     </div>
   @endforeach
   @endif
+  <div class="text-center mt-5">
+    <a type="button" class="btn btn-secondary" href="{{ route('toppage.index') }}">トップへ戻る</a>
+  </div>
 </div>
 @endsection

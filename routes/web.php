@@ -12,7 +12,7 @@
 */
 //トップページ
 Route::get('/', 'TopPageController@index') -> name('toppage.index');
-Route::get('/toppage/ranking', 'TopPageController@ranking') -> name('toppage.ranking');
+
 //摂取カロリー
 Route::get('/toppage/calorie_management', 'CalorieManagementController@index') -> name('calorie_management.index');
 
