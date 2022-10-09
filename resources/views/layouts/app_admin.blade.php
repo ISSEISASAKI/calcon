@@ -18,10 +18,11 @@
 
       <!-- Styles -->
       <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+      <style>body{background-color: tomato;}</style> 
   </head>
   <body>
     <div id="app">
-      @component('components.header')
+      @component('components.admin_header')
       @endcomponent
 
       <main class="py-4">

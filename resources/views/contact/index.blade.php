@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mt-5 pt-5">
+<div class="container mt-2 pt-5">
   <div class="row">
     <div class="col-md-6 offset-md-3">
     <form method = "POST" action="{{ route('contact.confirmation') }}">
         <div class="mb-3">
-        @csrf
+          @csrf
           <h1 class="text-center">お問合せ</h1>
           <label>お名前</label><br>
           <input type="name" name="name" class="form-control align-self-center" placeholder="Name" value="" required>
@@ -20,7 +20,7 @@
           <textarea name="contact" rows="10" cols="20" class="form-control" placeholder="文字を入力して下さい" value="" required></textarea>
         </div>
         <div class="text-center mt-5">
-          <a type="button" class="btn btn-secondary mr-5" href="{{ route('toppage.index') }}">トップへ戻る</a>
+          <a type="button" class="btn btn-secondary mr-5" href="{{ url('/') }}">トップへ戻る</a>
           <button class="btn btn-primary" type="submit">送信</button>
         </div>
       </form>

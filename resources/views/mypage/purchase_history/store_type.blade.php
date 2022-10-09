@@ -13,21 +13,21 @@
         @else
         <div class="card-body">
           <table class="table table-striped">
-          <tbody>
-            <tr class="text-center">
-              <th>日付</th>
-              <th>商品</th>
-              <th>カロリー</th>
-            </tr>
-            @foreach($totals as $item)
+            <tbody>
+              <tr class="text-center">
+                <th>日付</th>
+                <th>商品</th>
+                <th>カロリー</th>
+              </tr>
+          @foreach($totals as $item)
             <tr class="text-center">
               <td>{{ $item[0]['date'] }}</td>
               <td>{{ $item[1]['name'] }}</td>
               <td>{{ $item[1]['calorie'] }}</td>
             </tr>
-            @endforeach
+          @endforeach
           </tbody>
-          </table>
+        </table>
         @endif
         </div>
       </div>

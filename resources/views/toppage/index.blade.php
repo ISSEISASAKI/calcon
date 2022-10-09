@@ -1,16 +1,30 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container text-center mt-5">
-  <h1>コンビニ選択画面</h1>
-  @foreach($store_types as $store_type)
-    <div class="mt-4">
-      <a class="h2" href="{{ route('genre.index', ['store_type_id' => $store_type['id']]) }}">{{ $store_type['name'] }}</a>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <h2 >コンビニ選択画面</h2>
+        </div>
+        <div class="card-body">
+          <table class="table table-borderless">
+            <tbody>
+              @foreach($store_types as $store_type)
+                <tr>
+                  <td class="h4 text-center"><a href="{{ route('genre.index', ['store_type_id' => $store_type['id']]) }}">{{ $store_type['name'] }}</a></td>
+                </tr>
+              @endforeach
+            </tbody>
+          </table>
+         <div class="text-center">
+            <h1>本日摂取カロリー</h1>
+            <h1>{{ $today_calorie }}cal</h1>
+          </div>
+        </div>
+      </div>
     </div>
-  @endforeach
-</div>
-  <div class="text-center">
-    <h1 class="font-weight-bold mt-5">本日摂取カロリー</h1>
-    <h1 class="font-weight-bold">{{ $today_calorie }}cal</h1>
   </div>
+</div>
 @endsection

@@ -10,13 +10,13 @@
     @if($calorie_targets->isEmpty())
       <form method = "POST" action="{{ route('calorie_target.store') }}">
         @csrf
-          <h2 class="text-center">目標カロリー</h2>
-          <input type="number" name="calorie" class="form-control" min="0" value=" "><p>cal</p>
-          <button class="btn btn-primary" type="submit">送信</button>
+        <h2 class="text-center">目標カロリー</h2>
+        <input type="number" name="calorie" class="form-control" min="0" value=" "><p>cal</p>
+        <button class="btn btn-primary" type="submit">送信</button>
       </form>
     @else
       <form method = "POST" action="{{ route('calorie_target.update') }}">
-      @csrf
+        @csrf
         <h2 class="text-center">目標カロリー</h2>
         <input type="number" name="calorie" class="form-control" min="0" value=" "><p>cal</p>
         <a type="button" class="btn btn-secondary mr-5 col-4" href="{{ route('mypage') }}" role="button">マイページへ戻る</a>

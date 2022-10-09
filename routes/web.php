@@ -11,7 +11,7 @@
 |
 */
 //トップページ
-Route::get('/', 'TopPageController@index') -> name('toppage.index');
+Route::get('/toppage', 'TopPageController@index') -> name('toppage.index');
 
 //摂取カロリー
 Route::get('/toppage/calorie_management', 'CalorieManagementController@index') -> name('calorie_management.index');
@@ -108,3 +108,23 @@ Route::post('/contact/confirmation', 'ContactController@confirmation') -> name (
 Route::post('/contact/finishadd', 'ContactController@store') -> name('contact.store');
 //お問い合わせ内容完了
 Route::get('/contact/finishadd', 'ContactController@finishadd') -> name ('contact.finishadd');
+
+//マルチログイン
+Auth::routes();
+//User認証不要
+Route::get('/', function () { return redirect('/home'); });
+//Userログイン後
+Route::group(['middleware' => 'auth:user'], function() {
+  Route::get('/home', 'HomeController@index')->name('home');
+});
+//Admin認証不要
+Route::group(['prefix' => 'admin'], function() {
+  Route::get('/', function () { return redirect('/admin/home'); });
+  Route::get('login', 'Admin\LoginController@showLoginForm')->name('admin.login');
+  Route::post('login', 'Admin\LoginController@login');
+});
+//Adminログイン後
+Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function() {
+  Route::post('logout', 'Admin\LoginController@logout')->name('admin.logout');
+  Route::get('home', 'Admin\HomeController@index')->name('admin.home');
+});
