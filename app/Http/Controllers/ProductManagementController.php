@@ -23,6 +23,14 @@ class ProductManagementController extends Controller
         
     }
 
+    //商品追加完了画面
+    public function add(Request $request) {
+        $store_type_id = $request->store_type_id;
+        $genre_id = $request->genre_id;
+    
+        return view('product_management.add', compact('store_type_id', 'genre_id'));
+    }
+
     //商品追加処理
     public function store(Request $request) {
         $store_type_id = $request->store_type_id;

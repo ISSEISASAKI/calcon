@@ -24,8 +24,8 @@
               @endif
             </tbody>
           </table>
-          <div class="text-center mt-5">
-            <a type="button" class="btn btn-secondary" href="{{ route('toppage.index') }}">トップへ戻る</a>
+          <div class="text-center">
+            <a type="button" class="btn btn-secondary" href="{{ route('home') }}">トップへ戻る</a>
           </div>
         </div>
       </div>

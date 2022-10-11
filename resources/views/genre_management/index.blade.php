@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app_admin')
 
 @section('content')
 <div class="container">
@@ -32,6 +32,7 @@
             </tbody>
           </table>
           <div class="text-center">
+            <a type="button" class="btn btn-secondary mr-2" href="{{ route('admin.home') }}">トップへ戻る</a>
             <a type="button" class="btn btn-primary" href="{{ route('genre_management.add', ['store_type_id' => $store_type_id]) }}" role="button">ジャンル名追加</a>
           </div>
         </div>

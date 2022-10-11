@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\StoreType;
 
 class HomeController extends Controller
 {
@@ -24,6 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('admin.home');  //変更
+        $store_type_managements = StoreType::all(); 
+
+        return view('dashboard.index', compact('store_type_managements'));  //変更
     }
 }

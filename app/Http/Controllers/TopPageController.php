@@ -39,9 +39,7 @@ class TopPageController extends Controller
         return view('toppage.index', compact('store_types', 'today_calorie'));
     }
     
-    public function ranking() {
-        return view('toppage.ranking');
-    }
+
     public function calorie() {
         return view('toppage.calorie');
     }

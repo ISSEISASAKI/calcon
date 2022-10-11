@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.app_admin')
 
 @section('content')
-<div class="container mt-5 pt-5">
+<div class="container mt-5">
   <div class="row">
     <div class="col-md-6 offset-md-3">
       <form method = "POST" action="{{ route('storetype_management.store') }}">

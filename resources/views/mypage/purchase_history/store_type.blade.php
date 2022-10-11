@@ -34,7 +34,7 @@
     </div>
   </div>
   <div class="text-center">
-      <a type="button" class="btn btn-secondary mt-5" href="{{ route('mypage') }}" role="button">マイページへ戻る</a>
+      <a type="button" class="btn btn-secondary mt-5" href="{{ route('mypage.purchase_history') }}" role="button">本日購入品一覧へ戻る</a>
     </div>
 </div>
 @endsection

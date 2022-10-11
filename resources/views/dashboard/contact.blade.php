@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app_admin')
 
 @section('content')
 <div class="container mt-5 pt-5">
@@ -24,7 +24,7 @@
       </table>
       @endforeach
       <div class="text-center mt-5">
-        <a class="btn btn-secondary" href="{{ route('dashboard.index') }}">戻る</a>
+        <a class="btn btn-secondary" href="{{ route('admin.home') }}">戻る</a>
       </div>
     </div>
   </div>
