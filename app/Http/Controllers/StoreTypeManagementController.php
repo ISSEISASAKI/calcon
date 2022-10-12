@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\StoreType;
+use Illuminate\Support\Facades\Auth;
 
 class StoreTypeManagementController extends Controller
 {
@@ -12,14 +13,15 @@ class StoreTypeManagementController extends Controller
     }
 
     public function store(Request $request) {
- 
-          $post = new StoreType();
-          $post->name = $request->name;
-          $post->img_filename = "テスト";
-          $post->admin_id = 1;
-          $post->save();
+        $admin_id = 1;
+
+        $post = new StoreType();
+        $post->name = $request->name;
+        $post->img_filename = "テスト";
+        $post->admin_id = $admin_id;
+        $post->save();
   
-          return view('storetype_management.finishadd');
+        return view('storetype_management.finishadd');
     }
 
     public function finishadd() {

@@ -4,20 +4,26 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\CalorieTarget;
+use Illuminate\Support\Facades\Auth;
 
 class CalorieTargetController extends Controller
 {
     public function index() {
         $calorie_targets = CalorieTarget::all();
 
-        return view('mypage.calorie_target.index', compact('calorie_targets'));
+        foreach($calorie_targets as $calorietarget){
+            $calorie_check = $calorietarget['user_id'];
+        }
+
+        return view('mypage.calorie_target.index', compact('calorie_targets', 'calorie_check'));
     }
 
     public function store(Request $request) {
+        $user_id = Auth::user();
 
         $post = new CalorieTarget();
         $post->calorie = $request->calorie;
-        $post->user_id = 1;
+        $post->user_id = $user_id;
         $post->save();
 
         $post = CalorieTarget::all();   
@@ -26,9 +32,9 @@ class CalorieTargetController extends Controller
     }
 
     public function update(Request $request) {
-        $user = 1; 
+        $user_id = Auth::user(); 
         
-        $post = CalorieTarget::where('user_id', $user)
+        $post = CalorieTarget::where('user_id', $user_id)
         ->first();
         $post->calorie = $request->calorie;
         $post->save();

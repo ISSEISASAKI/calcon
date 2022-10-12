@@ -2,23 +2,23 @@
 
 @section('content')
 <div class="container mt-5 pt-5">
-  <div class="row">
-    <div class="col-md-6 offset-md-3">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
       <h1 class="text-center">お問合せ内容確認</h1>
       @foreach($contact_confirms as $contact_confirm)
       <table class="table table-bordered text-center">
         <thead>
           <tr>
-            <th scope="col">お名前</th>
-            <th scope="col">メールアドレス</th>
-            <th scope="col">お問い合わせ内容</th>
+            <th style="width: 25%">お名前</th>
+            <th style="width: 55%">メールアドレス</th>
+            <th style="width: 20%">お問い合わせ内容</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <th scope="row">{{ $contact_confirm['name'] }}</th>
+            <th scope="row">{{ $contact_confirm[''] }}</th>
             <td>{{ $contact_confirm['email'] }}</td>
-            <td>{{ $contact_confirm['contact'] }}</td>
+            <td><a type="button" class="btn btn-success" href="{{ route('dashboard.contact_detail', ['contact_detail' => $contact_confirm['contact']]) }}">詳細</a></td>
           </tr>
         </tbody>
       </table>

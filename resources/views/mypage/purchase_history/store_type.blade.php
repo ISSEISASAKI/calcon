@@ -9,7 +9,7 @@
           <h2 >{{ $store_name }}購入履歴</h2>
         </div>
         @if($calorie_managements->isEmpty())
-        <h3 class="text-center">データがありません</h3>
+        <h3 class="text-center mt-3">データがありません</h3>
         @else
         <div class="card-body">
           <table class="table table-striped">

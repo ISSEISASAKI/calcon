@@ -12,7 +12,7 @@
           <table class="table table-borderless">
             <tbody class="text-center">
             <tr>
-                <th><a class="h4" href="{{ route('mypage.editmember') }}">会員情報の編集</a></th>
+                <th><a class="h4" href="{{ route('mypage.edit_member') }}">会員情報の編集</a></th>
             </tr>
             <tr>
                 <th><a class="h4" href="{{ route('mypage.purchase_history') }}">購入履歴</a></th>

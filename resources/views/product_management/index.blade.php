@@ -11,6 +11,8 @@
         <div class="card-body">
           <table class="table table-striped">
             <tbody>
+              <p>コンビニ名：{{ $store_name }}</p>
+              <p>ジャンル名：{{ $genre_name }}</p>
               @if($product_managements->isEmpty())
                 <div class="text-center">
                   <h1>データがありません</h1>
@@ -19,34 +21,19 @@
                 </div>
               @else
               <tr>
-                <th style="width: 20%">
-                  商品名称
-                </th>
-                <th style="width: 20%">
-                  カロリー
-                </th>
-                <th style="width: 20%">
-                  金額
-                </th>
-                <th style="width: 20%">
-                  商品画像
-                </th>
-                <th style="width: 20%">
-                </th>
+                <th style="width: 20%">商品名称</th>
+                <th style="width: 20%">カロリー</th>
+                <th style="width: 20%">金額</th>
+                <th style="width: 20%">商品画像</th>
+                <th style="width: 20%"></th>
               </tr>
               <form method="POST" action="{{ route('product_management.destroy', ['store_type_id' => $store_type_id, 'genre_id' => $genre_id]) }}" onsubmit="if(confirm('本当に削除しますか？')) { return true } else {return false };" class="h2 mt-4 ml-4 mb-5">
               @csrf
               @foreach($product_managements as $product_management)
                 <tr>
-                  <td>
-                    <label><input class="mr-2" type="checkbox" name="product_id[]" value="{{ $product_management['id'] }}">{{ $product_management['name'] }}</label>
-                  </td>
-                  <td>
-                    <label>{{ $product_management['price'] }}円</label>
-                  </td>
-                  <td>
-                    <label>{{ $product_management['calorie'] }}cal</label>
-                  </td>
+                  <td><label><input class="mr-2" type="checkbox" name="product_id[]" value="{{ $product_management['id'] }}">{{ $product_management['name'] }}</label></td>
+                  <td>label>{{ $product_management['price'] }}円</label></td>
+                  <td><label>{{ $product_management['calorie'] }}cal</label></td>
                   <td style="width: 10%">
                     <input type="hidden" name="img_filename[]" value="{{ $product_management['img_filename'] }}">
                     <img src="{{ Storage::url($product_management['img_filename']) }}" width="80%" class="img-thumbnail">

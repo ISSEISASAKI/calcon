@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Collection;
 use App\Product;
+use App\Genre;
+use App\StoreType;
+use Illuminate\Support\Facades\Auth;
 
 class ProductManagementController extends Controller
 {
@@ -17,9 +20,23 @@ class ProductManagementController extends Controller
         $product_managements = Product::where('store_type_id', $store_type_id)
                    ->where('genre_id', $genre_id)
                    ->get();
+
+        $stores = [];
+        $stores[] = StoreType::find($store_type_id);
+           
+        foreach ($stores as $store){
+            $store_name = $store['name'];
+        }
+           
+        $genres = [];
+        $genres[] = Genre::find($genre_id);
+           
+        foreach ($genres as $genre){
+            $genre_name = $genre['name'];
+        }
                 
   
-        return view('product_management.index', compact('store_type_id', 'genre_id', 'product_managements'));
+        return view('product_management.index', compact('store_type_id', 'genre_id', 'product_managements', 'store_name', 'genre_name'));
         
     }
 
@@ -33,6 +50,7 @@ class ProductManagementController extends Controller
 
     //商品追加処理
     public function store(Request $request) {
+        $admin_id = 1;
         $store_type_id = $request->store_type_id;
         $genre_id = $request->genre_id;
         // 画像フォームでリクエストした画像を取得
@@ -48,7 +66,7 @@ class ProductManagementController extends Controller
         $post->calorie = $request->calorie;
         $post->store_type_id = $request->store_type_id;
         $post->genre_id = $request->genre_id;
-        $post->admin_id = 1;
+        $post->admin_id = $admin_id;
         $post->img_filename = $path;
         $post->save();
   

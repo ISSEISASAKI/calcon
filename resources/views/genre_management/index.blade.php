@@ -11,6 +11,7 @@
         <div class="card-body">
           <table class="table table-borderless text-center">
             <tbody>
+              <p>コンビニ名：{{ $store_name }}</p>
               @foreach($genre_managements as $genre_management)
                 <tr>
                   <th style="width: 70%"></th>

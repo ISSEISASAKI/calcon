@@ -21,6 +21,12 @@ class DashboardController extends Controller
         return view('dashboard.contact', compact('contact_confirms'));
     }
 
+    public function contact_detail(Request $request) {
+        $contact_details = $request -> contact_detail;
+
+        return view('dashboard.contact_detail', compact('contact_details'));
+    }
+
     public function destroy(Request $request) {
         $store_type_id = $request -> store_type_id;
 

@@ -60,4 +60,14 @@ class LoginController extends Controller
  
         return redirect('/admin/login');  //変更
     }
+
+    public function login(Request $request)
+    {
+        $credentials = $request->only(['email', 'password']);
+
+        if (Auth::guard('admin')->attempt($credentials)) {
+            // ログインしたら管理画面トップにリダイレクト
+            return redirect()->route('admin.home');
+        }
+    }
 }

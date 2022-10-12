@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\CalorieManagement;
 use App\StoreType;
 use App\Product;
+use App\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class MyPageController extends Controller
 {
@@ -16,12 +19,35 @@ class MyPageController extends Controller
     public function logout() {
         return view('mypage.logout');
     }
-    public function editmember() {
-        return view('mypage.editmember');
+    public function edit_member() {
+        return view('mypage.edit_member.index');
+    }
+
+    public function edit_member_update(Request $request) {
+        $user_id = Auth::user()->id;
+        $name = $request -> name;
+        $email = $request -> email;
+        $password = $request -> password;
+      
+        $user_details = User::find($user_id);
+        $user_details->name = $request->name;
+        $user_details->email = $request->email;
+        $user_details->password = Hash::make($request->password);
+        $user_details->save();
+
+        $user_details = User::all();        
+
+
+        return view('mypage.edit_member.finishedit', compact('user_details'));
+    }
+
+    public function finishedit(Request $request) {
+
+        return view('mypage.edit_member.finishedit');
     }
 
     public function history() {
-        $user_id = 1;
+        $user_id = Auth::user();
         $store_types = StoreType::all();
         $calorie_managements = CalorieManagement::where('user_id', $user_id)
             ->where('date', date('Y-m-d'))
@@ -50,7 +76,7 @@ class MyPageController extends Controller
 
     //購入履歴
     public function store_type(Request $request) {
-        $user_id = 1;
+        $user_id = Auth::user();
         $store_type_id = $request->store_type_id;
 
         $store_types = StoreType::where('id', $store_type_id)

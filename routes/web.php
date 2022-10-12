@@ -114,19 +114,37 @@ Auth::routes();
 
 //User認証不要
 Route::get('/', function () { return redirect('/toppage'); });
+//トップページ
+Route::get('/toppage', 'TopPageController@index')->name('home');
+
+//ジャンルページ
+Route::get('/genre', 'GenreController@index') -> name('genre.index');
+
+//商品ページ
+Route::get('/product/index', 'ProductController@index') -> name('product.index');
+Route::post('/product/finishadd', 'ProductController@finishadd') -> name('product.finishadd');
+
+//お問い合わせ
+Route::get('/contact', 'ContactController@index') -> name('contact.index');
+//送信お問い合わせ内容確認
+Route::get('/contact/confirmation', 'ContactController@confirmation') -> name ('contact.confirmation');
+//お問い合わせ内容送信
+Route::post('/contact/finishadd', 'ContactController@store') -> name('contact.store');
+//お問い合わせ内容完了
+Route::get('/contact/finishadd', 'ContactController@finishadd') -> name ('contact.finishadd');
 
 //Userログイン後
 //ログインしたユーザーのみ使えるルーティング
 Route::group(['middleware' => 'auth:user'], function() {
-  Route::get('/toppage', 'HomeController@index')->name('home');
-
   //摂取カロリー
   Route::get('/toppage/calorie_management', 'CalorieManagementController@index') -> name('calorie_management.index');
 
   //マイページ
   Route::get('/mypage', 'MyPageController@index') -> name('mypage');
   Route::get('/mypage/logout', 'MyPageController@logout') ->name('mypage.logout');
-  Route::get('/mypage/editmember', 'MyPageController@editmember') -> name('mypage.editmember');
+  Route::get('/mypage/edit_member', 'MyPageController@edit_member') -> name('mypage.edit_member');
+  Route::post('/mypage/edit_member', 'MyPageController@edit_member_update') -> name('mypage.edit_member_update');
+  Route::get('/mypage/edit_member/finishedit', 'MyPageController@finishedit') -> name('mypage.finishedit');
   Route::get('/mypage/purchase_history', 'MyPageController@history') -> name('mypage.purchase_history');
   Route::get('/mypage/purchase_history/store_type', 'MyPageController@store_type') -> name('mypage.store_type');
 
@@ -140,22 +158,6 @@ Route::group(['middleware' => 'auth:user'], function() {
 
   //コンビニ購入履歴
   Route::get('/mypage/purchasehistory', 'MyPageController@purchasehistory') -> name('mypage.purchasehistory');
-
-  //ジャンルページ
-  Route::get('/genre', 'GenreController@index') -> name('genre.index');
-
-  //商品ページ
-  Route::get('/product/index', 'ProductController@index') -> name('product.index');
-  Route::post('/product/finishadd', 'ProductController@finishadd') -> name('product.finishadd');
-
-  //お問い合わせ
-  Route::get('/contact', 'ContactController@index') -> name('contact.index');
-  //送信お問い合わせ内容確認
-  Route::post('/contact/confirmation', 'ContactController@confirmation') -> name ('contact.confirmation');
-  //お問い合わせ内容送信
-  Route::post('/contact/finishadd', 'ContactController@store') -> name('contact.store');
-  //お問い合わせ内容完了
-  Route::get('/contact/finishadd', 'ContactController@finishadd') -> name ('contact.finishadd');
 });
 
 //Admin認証不要
@@ -174,6 +176,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function() {
 
   //お問い合わせ内容確認
   Route::get('/dashboard/contact', 'DashboardController@contact') -> name('dashboard.contact');
+  //お問い合わせ内容詳細
+  Route::get('/dashboard/contact_detail', 'DashboardController@contact_detail') -> name('dashboard.contact_detail');
 
   //コンビニ名追加
   Route::get('/add', 'StoreTypeManagementController@add') -> name('storetype_management.add');

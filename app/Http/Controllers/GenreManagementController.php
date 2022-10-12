@@ -4,14 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Genre;
+use App\StoreType;
+use Illuminate\Support\Facades\Auth;
 
 class GenreManagementController extends Controller
 {
     public function index(Request $request) {
         $store_type_id = $request -> store_type_id;
         $genre_managements = Genre::all();
+        $stores = [];
+        $stores[] = StoreType::find($store_type_id);
+
+        foreach ($stores as $store){
+            $store_name = $store['name'];
+        }
  
-        return view('genre_management.index', compact('store_type_id', 'genre_managements'));
+        return view('genre_management.index', compact('store_type_id', 'genre_managements', 'store_name'));
     }
 
     //コンビニ名追加画面
@@ -22,11 +30,12 @@ class GenreManagementController extends Controller
 
     //コンビニ名追加処理
     public function store(Request $request) {
+        $admin_is = 1;
         $store_type_id = $request -> store_type_id;
 
         $post = new Genre();
         $post->name = $request->name;
-        $post->admin_id = 1;
+        $post->admin_id = $admin_id;
         $post->save();
   
           

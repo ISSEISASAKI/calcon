@@ -6,13 +6,13 @@ use Illuminate\Http\Request;
 use App\StoreType;
 use App\Product;
 use App\CalorieManagement;
-use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 
 class TopPageController extends Controller
 {
     public function index() {
-        $user_id = 1;
+        $user_id = Auth::user();
         $today_calorie = 0;
         $store_types = StoreType::all();
         $calorie_managements = CalorieManagement::where('user_id', $user_id)

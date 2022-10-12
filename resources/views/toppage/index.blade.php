@@ -18,10 +18,12 @@
               @endforeach
             </tbody>
           </table>
+        @auth
          <div class="text-center">
             <h1>本日摂取カロリー</h1>
             <h1>{{ $today_calorie }}cal</h1>
           </div>
+        @endauth
         </div>
       </div>
     </div>

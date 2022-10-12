@@ -18,12 +18,14 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
+        //return redirect('/toppage');
+
         if (Auth::guard($guard)->check()) {
             //もし$guardがadminだったらリダイレクト先はadminトップページ
             if($guard == 'admin')   {
                 return redirect(RouteServiceProvider::ADMIN_HOME);
             } else {
-            return redirect(RouteServiceProvider::HOME);
+                return redirect(RouteServiceProvider::HOME);
             }
         }
 
