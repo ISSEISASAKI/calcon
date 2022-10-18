@@ -37,12 +37,10 @@ class MyPageController extends Controller
 
         $user_details = User::all();        
 
-
         return view('mypage.edit_member.finishedit', compact('user_details'));
     }
 
     public function finishedit(Request $request) {
-
         return view('mypage.edit_member.finishedit');
     }
 
@@ -56,21 +54,18 @@ class MyPageController extends Controller
         if ($calorie_managements->isEmpty()) {
             return view('mypage.purchase_history.index', compact('calorie_managements', 'store_types'));
         } else {
-        
-        $totals = [];
-        foreach ($calorie_managements as $calorie_management) {
 
+        $total = [];
+        foreach ($calorie_managements as $calorie_management) {
             $product = Product::find($calorie_management['product_id']);  
             $store = StoreType::find($product['store_type_id']);
 
             $item = [$store,$product];
 
-            $totals[] = $item;       
+            $total[] = $item;       
         }           
 
-
-
-        return view('mypage.purchase_history.index', compact('store_types', 'calorie_managements', 'totals'));
+        return view('mypage.purchase_history.index', compact('store_types', 'calorie_managements', 'total'));
         }
     }
 
@@ -80,39 +75,30 @@ class MyPageController extends Controller
         $store_type_id = $request->store_type_id;
 
         $store_types = StoreType::where('id', $store_type_id)
-        ->get();
+            ->get();
 
         foreach ($store_types as $store_type) {
-
-        $store_name = $store_type['name'];
-    
+            $store_name = $store_type['name'];
         }
         
         $calorie_managements = CalorieManagement::where('user_id', $user_id)
             ->where('store_type_id', $store_type_id)
             ->get();
 
-        
             if ($calorie_managements->isEmpty()) {
-                return view('mypage.purchase_history.store_type', compact('calorie_managements', 'store_name'));
+            return view('mypage.purchase_history.store_type', compact('calorie_managements', 'store_name'));
             } else {
-            
-            $totals = [];
+            $total = [];
             foreach ($calorie_managements as $calorie_management) {
             
                 $product = Product::find($calorie_management['product_id']);
         
                 $item = [$calorie_management, $product];
         
-                $totals[] = $item;
-        
+                $total[] = $item;
                 }       
             }   
 
-
-
-        return view('mypage.purchase_history.store_type', compact('store_name', 'totals', 'calorie_managements'));
+        return view('mypage.purchase_history.store_type', compact('store_name', 'total', 'calorie_managements'));
     }
-
-    
 }

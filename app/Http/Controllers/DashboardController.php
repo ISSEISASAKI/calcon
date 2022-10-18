@@ -11,7 +11,7 @@ class DashboardController extends Controller
 {
     public function index() {
         $store_type_managements = StoreType::all(); 
-
+        
         return view('dashboard.index', compact('store_type_managements'));
     }
 
@@ -30,7 +30,6 @@ class DashboardController extends Controller
     public function destroy(Request $request) {
         $store_type_id = $request -> store_type_id;
 
-
         $product_managements = Product::where('store_type_id', $request->store_type_id);
         $product_managements->delete();
 
@@ -41,6 +40,4 @@ class DashboardController extends Controller
  
         return view('dashboard.index', compact('store_type_managements'));
     }
-
-
 }

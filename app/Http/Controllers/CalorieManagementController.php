@@ -23,7 +23,6 @@ class CalorieManagementController extends Controller
                                 ->get();
 
         foreach ($calorie_targets as $calorie_target) {
-    
             $calorie_check = $calorie_target['user_id'];
         }
 
@@ -31,36 +30,24 @@ class CalorieManagementController extends Controller
 
         $products = [];
         foreach ($calorie_managements as $calorie_management) {
-    
             $products[] = Product::find($calorie_management['product_id']);
         }
 
         foreach ($products as $product) {
-    
             $today_price += $product['price'];
         } 
 
-        
-
         foreach ($products as $product) {
-    
             $today_calorie += $product['calorie'];
         } 
 
         $remaining = $calorie['calorie'] - $today_calorie; 
 
-        return view('toppage.calorie_management.index', compact('calorie_targets', 'today_calorie', 'today_price', 'remaining', 'calorie_check', 'calorie'));
+        return view('mypage.calorie_management.index', compact('calorie_targets', 'today_calorie', 'today_price', 'remaining', 'calorie_check', 'calorie'));
 
         }
 
-  
         return view('toppage.calorie_management.index', compact('calorie_targets', 'today_calorie', 'today_price', 'calorie_check'));
         
     }
-
-    //public function add(Request $request) {
-    //    $calorie = $request->calorie;
-  
-    //    return view('toppage.calorie_management.index', compact('calorie'));
-    //}
 }

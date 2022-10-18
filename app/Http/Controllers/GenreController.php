@@ -20,5 +20,4 @@ class GenreController extends Controller
 
         return view('genre.index', compact('store_type_id', 'genres', 'store_name'));
     }
-    
 }

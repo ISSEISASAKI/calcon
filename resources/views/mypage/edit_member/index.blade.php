@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mt-5 pt-5">
-  <div class="row">
-    <div class="col-md-6 offset-md-3">
-      <h1 class="text-center">会員情報の編集</h1>
+  <div class="container mt-5 pt-5">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <h1 class="text-center">会員情報の編集</h1>
         <form method="POST" action="{{ route('mypage.edit_member_update') }}">
           @csrf
           <div class="mb-3">
-          <label>お名前</label><br>
+            <label>お名前</label><br>
             <input type="text" name="name" class="form-control align-self-center" placeholder="Name" value="" required>
           </div>
           <div class="mb-3">
@@ -28,7 +28,7 @@
             <button class="btn btn-primary col-4" type="submit">送信</button>
           </div>
         </form>
+      </div>
     </div>
   </div>
-</div>
 @endsection

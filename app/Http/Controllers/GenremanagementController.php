@@ -18,19 +18,20 @@ class GenreManagementController extends Controller
         foreach ($stores as $store){
             $store_name = $store['name'];
         }
- 
+
         return view('genre_management.index', compact('store_type_id', 'genre_managements', 'store_name'));
     }
 
     //コンビニ名追加画面
     public function add(Request $request) {
         $store_type_id = $request -> store_type_id;
+
         return view('genre_management.add', compact('store_type_id'));
     }
 
     //コンビニ名追加処理
     public function store(Request $request) {
-        $admin_is = 1;
+        $admin_id = Auth::user();
         $store_type_id = $request -> store_type_id;
 
         $post = new Genre();
@@ -38,7 +39,6 @@ class GenreManagementController extends Controller
         $post->admin_id = $admin_id;
         $post->save();
   
-          
         return view('genre_management.finishadd', compact('store_type_id'));
     }
 
@@ -54,7 +54,10 @@ class GenreManagementController extends Controller
         $store_type_id = $request -> store_type_id;
         $genre_id = $request -> id;
 
-        return view('genre_management.edit', compact('store_type_id', 'genre_id'));
+        $genre_managements = Genre::find($genre_id);
+        $genre_name = $genre_managements['name'];
+
+        return view('genre_management.edit', compact('store_type_id', 'genre_id', 'genre_name'));
     }
 
     public function finishedit(Request $request) {
@@ -75,7 +78,6 @@ class GenreManagementController extends Controller
 
         $genre_managements = Genre::all();        
 
-
         return view('genre_management.finishedit', compact('genre_managements', 'store_type_id', 'genre_id'));
     }
 
@@ -90,5 +92,4 @@ class GenreManagementController extends Controller
  
         return view('genre_management.index', compact('genre_managements', 'store_type_id', 'genre_id'));
     }
-    
 }

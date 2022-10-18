@@ -29,10 +29,9 @@ class ProductController extends Controller
             $genre_name = $genre['name'];
         }
 
-
         $products = Product::where('store_type_id', $request->store_type_id)
-        ->where('genre_id', $request->genre_id)
-        ->get();
+            ->where('genre_id', $request->genre_id)
+            ->get();
 
         return view('product.index', compact('store_type_id', 'genre_id', 'products', 'store_name', 'genre_name'));
     }
@@ -51,13 +50,10 @@ class ProductController extends Controller
             $post->store_type_id = $store_type_id;
             $post->user_id = $user_id;
             $post->save();
-    
         }
     
         $products = Product::find($product_id);
 
-
         return view('product.finishadd', compact('store_type_id', 'genre_id', 'products'));
     }
-    
 }

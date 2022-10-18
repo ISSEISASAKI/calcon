@@ -35,7 +35,7 @@ class CalorieTargetController extends Controller
         $user_id = Auth::user(); 
         
         $post = CalorieTarget::where('user_id', $user_id)
-        ->first();
+            ->first();
         $post->calorie = $request->calorie;
         $post->save();
 

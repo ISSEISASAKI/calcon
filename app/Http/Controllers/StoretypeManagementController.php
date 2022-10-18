@@ -31,23 +31,21 @@ class StoreTypeManagementController extends Controller
     public function edit(Request $request) {
         $store_type_id = $request -> store_type_id;
 
-        return view('storetype_management.edit', compact('store_type_id'));
+        $store_type_managements = StoreType::find($store_type_id);
+        $store_type_name = $store_type_managements['name'];
+
+        return view('storetype_management.edit', compact('store_type_id', 'store_type_name'));
     }
 
     public function update(Request $request) {
         $store_type_id = $request -> store_type_id; 
 
-        
         $store_type_managements = StoreType::find($store_type_id);
         $store_type_managements->name = $request->name;
         $store_type_managements->save();
 
         $store_type_managements = StoreType::all();        
 
-
         return view('dashboard.index', compact('store_type_managements'));
     }
-
-
-
 }

@@ -35,9 +35,7 @@ class ProductManagementController extends Controller
             $genre_name = $genre['name'];
         }
                 
-  
         return view('product_management.index', compact('store_type_id', 'genre_id', 'product_managements', 'store_name', 'genre_name'));
-        
     }
 
     //商品追加完了画面
@@ -58,8 +56,7 @@ class ProductManagementController extends Controller
         // storage > public > img配下に画像が保存される
         $path = $img->store('img','public');
 
-
-          //productsテーブルへ保存処理 
+        //productsテーブルへ保存処理 
         $post = new Product();
         $post->name = $request->name;
         $post->price = $request->price;
@@ -124,7 +121,6 @@ class ProductManagementController extends Controller
         ->where('genre_id', $request->genre_id)
         ->get();
 
-
         return redirect()->route('product_management.finishedit', compact('product_managements', 'store_type_id', 'genre_id'));
     }
 
@@ -137,28 +133,20 @@ class ProductManagementController extends Controller
         // 商品画像ファイルへのパスを取得
         $path = $request->img_filename;
         
-
         //product_idで渡ったデータは複数なのでforeachで一つにする
         foreach ($product_id as $id) {
-    
-        $product_managements = Product::find($id);
-        $product_managements->delete();
-
+            $product_managements = Product::find($id);
+            $product_managements->delete();
         }
 
 
         foreach ($path as $img) {
-    
-        if ($img !== '') {
-            \Storage::disk('public')->delete($img);
-        }
-        
+            if ($img !== '') {
+                \Storage::disk('public')->delete($img);
+            }
         }
 
         $product_managements = Product::all();
-
         return redirect()->route('product_management.index', compact('product_managements', 'store_type_id', 'genre_id'));
     }
-    
-    
 }

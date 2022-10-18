@@ -34,19 +34,13 @@ class HomeController extends Controller
             ->where('date', date('Y-m-d'))
             ->get();
 
-
         $products = [];
         foreach ($calorie_managements as $calorie_management) {
-    
             $products[] = Product::find($calorie_management['product_id']);
-
         }
 
-
         foreach ($products as $product) {
-    
             $today_calorie += $product['calorie'];
-            
         }
         return view('toppage.index', compact('store_types', 'today_calorie'));
     }
