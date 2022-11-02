@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 
 class MyPageController extends Controller
 {
+    //マイページトップ画面
     public function index() {
         return view('mypage.index');
     }
@@ -28,6 +29,21 @@ class MyPageController extends Controller
         $name = $request -> name;
         $email = $request -> email;
         $password = $request -> password;
+
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|string|email|unique:users',
+            'password' => 'required|confirmed|regex:/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z\-]{8,24}$/',
+        ],
+        [
+            'name.required' => '名前は必須項目です。',
+            'email.required'  => 'メールアドレスは必須項目です。',
+            'email.email'  => 'メールアドレスで入力して下さい。',
+            'email.unique' => 'そのメールアドレスは既に使われています。',
+            'password.required' => 'パスワードは必須項目です。',
+            'password.confirmed'  => 'パスワードが異なります。',
+            'password.regex'  => 'パスワードは大文字、小文字、数字をそれぞれ1つ以上使用し、半角8文字以上で設定して下さい。',
+        ]);
       
         $user_details = User::find($user_id);
         $user_details->name = $request->name;

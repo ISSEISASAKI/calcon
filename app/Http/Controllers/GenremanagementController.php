@@ -34,6 +34,13 @@ class GenreManagementController extends Controller
         $admin_id = Auth::user();
         $store_type_id = $request -> store_type_id;
 
+        $request->validate([
+            'name' => 'required',
+        ],
+        [
+            'name.required' => 'ジャンル名は必須項目です。',
+        ]);
+
         $post = new Genre();
         $post->name = $request->name;
         $post->admin_id = $admin_id;
@@ -71,6 +78,13 @@ class GenreManagementController extends Controller
     public function update(Request $request) {
         $store_type_id = $request -> store_type_id;
         $genre_id = $request -> id;
+
+        $request->validate([
+            'name' => 'required',
+        ],
+        [
+            'name.required' => 'ジャンル名は必須項目です。',
+        ]);
       
         $genre_managements = Genre::find($genre_id);
         $genre_managements->name = $request->name;

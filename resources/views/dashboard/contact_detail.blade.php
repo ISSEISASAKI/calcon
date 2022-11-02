@@ -19,7 +19,11 @@
               </tbody>
             </table>
             <div class="text-center">
-              <a type="button" class="btn btn-secondary" href="{{ route('dashboard.contact') }}">お問い合わせ内容確認へ戻る</a>
+              <form action="{{ route('dashboard.destroy', ['contact_id' =>  $contact_id]) }}"  method="POST" onsubmit="if(confirm('本当に削除しますか？')) { return true } else {return false };">
+                  @csrf
+                  <button type="submit" class="btn btn-danger">削除</button>
+              </form>
+              <a type="button" class="btn btn-secondary mt-4" href="{{ route('dashboard.contact') }}">お問い合わせ内容確認へ戻る</a>
             </div>
           </div>
         </div>

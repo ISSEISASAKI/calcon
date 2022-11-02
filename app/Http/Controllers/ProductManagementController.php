@@ -48,9 +48,23 @@ class ProductManagementController extends Controller
 
     //商品追加処理
     public function store(Request $request) {
-        $admin_id = 1;
+        $admin_id = Auth::user();
         $store_type_id = $request->store_type_id;
         $genre_id = $request->genre_id;
+
+        $request->validate([
+            'name' => 'required',
+            'price' => 'required',
+            'calorie' => 'required',
+            'img_filename' => 'required',
+        ],
+        [
+            'name.required' => '商品名は必須項目です。',
+            'price.required'  => '値段は必須項目です。',
+            'calorie.required' => 'カロリー数値は必須項目です。',
+            'img_filename.required'  => '商品画像は必須項目です。',
+        ]);
+
         // 画像フォームでリクエストした画像を取得
         $img = $request->img_filename;
         // storage > public > img配下に画像が保存される
@@ -104,6 +118,19 @@ class ProductManagementController extends Controller
         $genre_id = $request->genre_id;
         $product_id = $request->product_id;
 
+        $request->validate([
+            'name' => 'required',
+            'price' => 'required',
+            'calorie' => 'required',
+            'img_filename' => 'required',
+        ],
+        [
+            'name.required' => '商品名は必須項目です。',
+            'price.required'  => '値段は必須項目です。',
+            'calorie.required' => 'カロリー数値は必須項目です。',
+            'img_filename.required'  => '商品画像は必須項目です。',
+        ]);
+
         $img = $request->img_filename;
         // storage > public > img配下に画像が保存される
         $path = optional($img)->store('img','public');
@@ -114,14 +141,12 @@ class ProductManagementController extends Controller
         $product_managements->calorie = $request->calorie;
         $product_managements->img_filename = $path;
         $product_managements->save();
-
-        $product_managements = Product::all();
         
         $product_managements = Product::where('store_type_id', $request->store_type_id)
-        ->where('genre_id', $request->genre_id)
-        ->get();
+            ->where('genre_id', $request->genre_id)
+            ->get();
 
-        return redirect()->route('product_management.finishedit', compact('product_managements', 'store_type_id', 'genre_id'));
+        return view('product_management.finishedit', compact('product_managements', 'store_type_id', 'genre_id'));
     }
 
     //商品削除処理
@@ -138,7 +163,6 @@ class ProductManagementController extends Controller
             $product_managements = Product::find($id);
             $product_managements->delete();
         }
-
 
         foreach ($path as $img) {
             if ($img !== '') {

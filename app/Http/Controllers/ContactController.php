@@ -11,23 +11,30 @@ use App\Http\Controllers\Controller;
 class ContactController extends Controller
 {
     public function index(Request $request) {
-        $validator = Validator::make($request->all(), [
-            'eamail' => 'required',
-            'contact' => 'required',
-        ]);
-
         return view('contact.index');
     }
 
+    //問い合わせ内容確認画面
     public function confirmation(Request $request) {
         $user_id = Auth::user();
         $name = $request->name;
         $email = $request->email;
         $contact = $request->contact;
+
+        $request->validate([
+            'email' => 'required|string|email',
+            'contact' => 'required',
+        ],
+        [
+            'email.required' => 'メールアドレスは必須項目です。',
+            'email.email'  => 'メールアドレスで入力して下さい。',
+            'contact.required'  => '問い合わせ内容は必須項目です。',
+        ]);
     
         return view('contact.confirmation', compact('name', 'email', 'contact'));
     }
     
+    //問い合わせ追加処理
     public function store(Request $request) {
         $user_id = Auth::user()->name;
  

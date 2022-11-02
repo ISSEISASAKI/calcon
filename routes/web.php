@@ -85,6 +85,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function() {
   Route::get('/dashboard/contact', 'DashboardController@contact') -> name('dashboard.contact');
   //お問い合わせ内容詳細
   Route::get('/dashboard/contact_detail', 'DashboardController@contact_detail') -> name('dashboard.contact_detail');
+  //お問い合わせ内容削除
+  Route::post('/dashboard/contact_detail', 'DashboardController@destroy') -> name('dashboard.destroy');
 
   //コンビニ名追加
   Route::get('/add', 'StoreTypeManagementController@add') -> name('storetype_management.add');
@@ -96,7 +98,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function() {
   Route::post('/storetype_management/update', 'StoreTypeManagementController@update') -> name('storetype_management.update');
 
   //コンビニ名削除
-  Route::post('/destroy', 'DashboardController@destroy') -> name('dashboard.destroy');
+  Route::post('/destroy', 'StoreTypeManagementController@destroy') -> name('store_type_management.destroy');
 
   //ジャンル管理
   Route::get('/genre_management', 'GenreManagementController@index') -> name('genre_management.index');

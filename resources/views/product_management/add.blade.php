@@ -8,6 +8,15 @@
         <div class="text-center">
           <h1>商品名追加画面</h1>
         </div>
+        @if ($errors->any())
+          <div class="alert alert-danger">
+            <ul>
+              @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+        @endif
         <input type="hidden" name="store_type_id" value="{{ $store_type_id }}">
         <input type="hidden" name="genre_id" value="{{ $genre_id }}">
         <label>Name</label>

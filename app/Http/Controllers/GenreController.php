@@ -8,6 +8,7 @@ use App\StoreType;
 
 class GenreController extends Controller
 {
+    //ジャンル名選択画面
     public function index(Request $request) {
         $store_type_id = $request -> store_type_id;
         $genres = Genre::all();

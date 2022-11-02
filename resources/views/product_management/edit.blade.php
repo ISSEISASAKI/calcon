@@ -5,10 +5,18 @@
     <div class="row">
       <div class="col-md-6 offset-md-3">
         <form method = "POST" action="{{ route('product_management.update', ['store_type_id' => $store_type_id, 'genre_id' => $genre_id, 'product_id' => $product_id]) }}" enctype="multipart/form-data">
-          <!--追加の時はPOST-->
           @csrf
           <div class="mb-3">
             <h1 class="text-center">商品名編集画面</h1>
+            @if ($errors->any())
+              <div class="alert alert-danger">
+                <ul>
+                  @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                  @endforeach
+                </ul>
+              </div>
+            @endif
             <label class="mt-5">Name</label>
             <input type="text" name="name" class="form-control align-self-center" placeholder="Name" value="{{ $product_managements['name'] }}" required>
             <label>Price</label>

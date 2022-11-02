@@ -21,6 +21,13 @@ class CalorieTargetController extends Controller
     public function store(Request $request) {
         $user_id = Auth::user();
 
+        $request->validate([
+            'calorie' => 'required',
+        ],
+        [
+            'calorie.required' => 'カロリー数値は必須項目です。',
+        ]);
+
         $post = new CalorieTarget();
         $post->calorie = $request->calorie;
         $post->user_id = $user_id;
@@ -33,6 +40,13 @@ class CalorieTargetController extends Controller
 
     public function update(Request $request) {
         $user_id = Auth::user(); 
+
+        $request->validate([
+            'calorie' => 'required',
+        ],
+        [
+            'calorie.required' => 'カロリー数値は必須項目です。',
+        ]);
         
         $post = CalorieTarget::where('user_id', $user_id)
             ->first();

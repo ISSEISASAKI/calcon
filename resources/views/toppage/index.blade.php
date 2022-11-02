@@ -13,7 +13,16 @@
               <tbody>
                 @foreach($store_types as $store_type)
                   <tr>
-                    <td class="h4 text-center"><a href="{{ route('genre.index', ['store_type_id' => $store_type['id']]) }}">{{ $store_type['name'] }}</a></td>
+                    <th style="width: 20%"></th>
+                    <th style="width: 80%"></th>
+                  </tr>
+                  <tr>
+                    <td>
+                      <img src="{{ Storage::url($store_type['img_filename']) }}" width="100%" class="img-thumbnail">
+                    </td>
+                    <td class="h4 text-center">
+                      <a href="{{ route('genre.index', ['store_type_id' => $store_type['id']]) }}">{{ $store_type['name'] }}</a>
+                    </td>
                   </tr>
                 @endforeach
               </tbody>

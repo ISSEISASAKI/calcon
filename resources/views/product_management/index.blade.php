@@ -31,14 +31,24 @@
                   @csrf
                   @foreach($product_managements as $product_management)
                     <tr>
-                      <td><label><input class="mr-2" type="checkbox" name="product_id[]" value="{{ $product_management['id'] }}">{{ $product_management['name'] }}</label></td>
-                      <td><label>{{ $product_management['price'] }}円</label></td>
-                      <td><label>{{ $product_management['calorie'] }}cal</label></td>
-                      <td style="width: 10%"><input type="hidden" name="img_filename[]" value="{{ $product_management['img_filename'] }}">
-                      <img src="{{ Storage::url($product_management['img_filename']) }}" width="80%" class="img-thumbnail"></td>
-                      <td class="row"><input type="hidden" name="img_filename[]" value="{{ $product_management['img_filename'] }}">
-                      <a class="btn btn-secondary mr-2" href="{{ route('product_management.edit', ['store_type_id' => $store_type_id, 'genre_id' => $genre_id, 'product_id' => $product_management['id']]) }}">編集</a>
-                      <button type="submit" class="btn btn-danger">削除</button></td>
+                      <td>
+                        <label><input class="mr-2" type="checkbox" name="product_id[]" value="{{ $product_management['id'] }}">{{ $product_management['name'] }}</label>
+                      </td>
+                      <td>
+                        <label>{{ $product_management['price'] }}円</label>
+                      </td>
+                      <td>
+                        <label>{{ $product_management['calorie'] }}cal</label>
+                      </td>
+                      <td style="width: 10%">
+                        <input type="hidden" name="img_filename[]" value="{{ $product_management['img_filename'] }}">
+                        <img src="{{ Storage::url($product_management['img_filename']) }}" width="80%" class="img-thumbnail">
+                      </td>
+                      <td class="row">
+                        <input type="hidden" name="img_filename[]" value="{{ $product_management['img_filename'] }}">
+                        <a class="btn btn-secondary mr-2" href="{{ route('product_management.edit', ['store_type_id' => $store_type_id, 'genre_id' => $genre_id, 'product_id' => $product_management['id']]) }}">編集</a>
+                        <button type="submit" class="btn btn-danger">削除</button>
+                      </td>
                     </tr>
                   @endforeach
                 </form>

@@ -15,7 +15,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:admin');  //変更
+        $this->middleware('auth:admin');
     }
 
     /**
@@ -25,8 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+        //データベースのstore_typesテーブルから取得
         $store_type_managements = StoreType::all(); 
 
-        return view('dashboard.index', compact('store_type_managements'));  //変更
+        return view('dashboard.index', compact('store_type_managements'));
     }
 }

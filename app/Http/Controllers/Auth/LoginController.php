@@ -40,22 +40,24 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function login(Request $request)
+    public function redirectTo(){
+        \Log::debug('redirectTo');
+        return RouteServiceProvider::HOME;
+    }
+
+    /**
+     * Send the response after the user was authenticated.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    protected function sendLoginResponse(Request $request)
     {
-        $request->validate([
-            $this->username() => 'required|string',
-            'password' => 'required|string',
-        ],
-            [
-                $this->username().'required' => '名前は必須項目です。',
-                'password.required'  => 'パスワードは必須項目です。',
-            ]);
+        $request->session()->regenerate();
 
-        $credentials = $request->only(['email', 'password']);
+        $this->clearLoginAttempts($request);
 
-        if (Auth::guard('user')->attempt($credentials)) {
-            // ログインしたらトップにリダイレクト
-            return redirect()->route('home');
-        }
+        return $this->authenticated($request, $this->guard()->user())
+                ?: redirect($this->redirectPath());
     }
 }

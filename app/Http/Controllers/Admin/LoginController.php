@@ -30,7 +30,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::ADMIN_HOME; // 変更
+    protected $redirectTo = RouteServiceProvider::ADMIN_HOME;
 
     /**
      * Create a new controller instance.
@@ -39,35 +39,45 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest:admin')->except('logout'); //変更
+        $this->middleware('guest:admin')->except('logout');
     }
 
     public function showLoginForm()
     {
-        return view('admin.login');  //変更
+        return view('admin.login');
     }
  
     protected function guard()
     {
-        return Auth::guard('admin');  //変更
+        return Auth::guard('admin');
     }
     
     public function logout(Request $request)
     {
-        Auth::guard('admin')->logout();  //変更
+        Auth::guard('admin')->logout();
         $request->session()->flush();
         $request->session()->regenerate();
  
-        return redirect('/admin/login');  //変更
+        return redirect('/admin/login');
     }
 
-    public function login(Request $request)
-    {
-        $credentials = $request->only(['email', 'password']);
+    public function redirectTo(){
+        return RouteServiceProvider::ADMIN_HOME;
+    }
 
-        if (Auth::guard('admin')->attempt($credentials)) {
-            // ログインしたら管理画面トップにリダイレクト
-            return redirect()->route('admin.home');
-        }
+    /**
+     * Send the response after the user was authenticated.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    protected function sendLoginResponse(Request $request)
+    {
+        $request->session()->regenerate();
+
+        $this->clearLoginAttempts($request);
+
+        return $this->authenticated($request, $this->guard()->user())
+                ?: redirect($this->redirectPath());
     }
 }
