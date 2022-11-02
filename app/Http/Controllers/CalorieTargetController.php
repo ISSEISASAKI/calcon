@@ -22,10 +22,11 @@ class CalorieTargetController extends Controller
         $user_id = Auth::user();
 
         $request->validate([
-            'calorie' => 'required',
+            'calorie' => 'required|integer',
         ],
         [
             'calorie.required' => 'カロリー数値は必須項目です。',
+            'calorie.integer'  => '半角数字で入力して下さい。',
         ]);
 
         $post = new CalorieTarget();

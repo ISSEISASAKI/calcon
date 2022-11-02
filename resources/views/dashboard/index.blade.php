@@ -26,7 +26,7 @@
                     </td>
                     <td class="row">
                       <a class="btn btn-secondary mr-1" href="{{ route('storetype_management.edit', ['store_type_id' => $store_type_management['id']]) }}">編集</a>
-                      <form action="{{ route('store_type_management.destroy', ['store_type_id' => $store_type_management['id']]) }}" method="POST" onsubmit="if(confirm('本当に削除しますか？')) { return true } else {return false };">
+                      <form action="{{ route('store_type_management.destroy', ['store_type_id' => $store_type_management['id'], 'img_filename' => $store_type_management['img_filename']]) }}" method="POST" onsubmit="if(confirm('本当に削除しますか？')) { return true } else {return false };">
                         @csrf
                         <button type="submit" class="btn btn-danger">削除</button>
                       </form>

@@ -85,12 +85,15 @@ class StoreTypeManagementController extends Controller
     //コンビニ名削除処理
     public function destroy(Request $request) {
         $store_type_id = $request -> store_type_id;
+        $path = $request->img_filename;
     
         $product_managements = Product::where('store_type_id', $request->store_type_id);
         $product_managements->delete();
     
         $store_type_managements = StoreType::find($store_type_id);
         $store_type_managements->delete(); 
+
+        \Storage::disk('public')->delete($path);
            
         $store_type_managements = StoreType::all();
      

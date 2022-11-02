@@ -120,14 +120,16 @@ class ProductManagementController extends Controller
 
         $request->validate([
             'name' => 'required',
-            'price' => 'required',
-            'calorie' => 'required',
+            'price' => 'required|integer',
+            'calorie' => 'required|integer',
             'img_filename' => 'required',
         ],
         [
             'name.required' => '商品名は必須項目です。',
             'price.required'  => '値段は必須項目です。',
+            'price.integer'  => '数字で入力して下さい。',
             'calorie.required' => 'カロリー数値は必須項目です。',
+            'calorie.integer'  => '半角数字で入力して下さい。',
             'img_filename.required'  => '商品画像は必須項目です。',
         ]);
 
@@ -154,23 +156,16 @@ class ProductManagementController extends Controller
         $store_type_id = $request->store_type_id;
         $genre_id = $request->genre_id;
         $product_id = $request->product_id;
-
         // 商品画像ファイルへのパスを取得
         $path = $request->img_filename;
         
-        //product_idで渡ったデータは複数なのでforeachで一つにする
-        foreach ($product_id as $id) {
-            $product_managements = Product::find($id);
-            $product_managements->delete();
-        }
+        $product_managements = Product::find($product_id);
+        $product_managements->delete();
 
-        foreach ($path as $img) {
-            if ($img !== '') {
-                \Storage::disk('public')->delete($img);
-            }
-        }
+        \Storage::disk('public')->delete($path);
 
         $product_managements = Product::all();
+
         return redirect()->route('product_management.index', compact('product_managements', 'store_type_id', 'genre_id'));
     }
 }
