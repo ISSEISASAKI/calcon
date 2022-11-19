@@ -41,7 +41,6 @@ class LoginController extends Controller
     }
 
     public function redirectTo(){
-        \Log::debug('redirectTo');
         return RouteServiceProvider::HOME;
     }
 
