@@ -6,7 +6,8 @@ use App\Genre;
 use App\Product;
 use App\Admin;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 class SetteingSeeder extends Seeder
 {
@@ -16,10 +17,14 @@ class SetteingSeeder extends Seeder
      * @return void
      */
     public function run() {
+        $randomname = Str::random(40);
+        $from = database_path( 'migration/1.png');
+        $to = storage_path( 'app/public/img/');
+        File::copy($from, $to . $randomname . '.png');
 
         $store1 = StoreType::create([
             'name' => 'test',
-            'img_filename' => 1,
+            'img_filename' => 'img/' . $randomname . '.png',
             'admin_id' => 'seeder',
         ]);
 

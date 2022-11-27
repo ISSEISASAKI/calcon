@@ -1,78 +1,71 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+#calcon説明書
+calconの説明をします
+##開発環境構築
++ 言語 PHP 7.4.3
++ フレームワーク Laravel 6.0
++ データベース sqlite 3.3.0
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
 
-## About Laravel
+##使い方
+はじめに
+1. ターミナルで
+```
+git clone https://github.com/ISSEISASAKI/calcon.git
+```
+と入力します
+2. 続いてターミナルで
+```
+composer install
+```
+と入力します
+3. .envファイルですが、採用担当者様へこちらよりメールで送り致します
+4. 最後にターミナルで
+```
+php artisan migrate
+```
+と入力します
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 一般ユーザー
+1. ターミナルで
+```
+php artisan db:seed --class SetteingSeeder
+```
+と入力します
+2. 同じくターミナルで
+```
+php artisan serve
+```
+と入力し表示されたURLをコピーしURL欄に貼り付けします
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+3. ログイン画面にて新規登録を押し、項目を入力してログインします
+4. 右上のマイページから目標カロリー設定を設定します 
+5. トップページに戻り商品を購入したコンビニを選択します 
+6. 続いてジャンルを選択します
+7. 最後に商品を選択するとカロリーが自動計算されトップページ及び、マイページの本日摂取カロリーを選択すると摂取したカロリーと目標の差分が表示されます
+8. マイページの購入履歴からは本日購入した一覧が見れます
+9. フッダーにあるお問合せボタンではお問合せ画面に遷移し、後述する管理ユーザーでお問合せ内容を確認できます、ログインしていなくても使用できます
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+## 管理ユーザー
+1. ターミナルで
+```
+php artisan db:seed --class SetteingSeeder
+```
+と入力します(一般ユーザーで入力した際には割愛します)
+2. 同じくターミナルで
+```
+php artisan serve
+```
+と入力し表示されたURLをコピーしURL蘭に貼り付けします
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+3. １で貼り付けたURLの末尾に/admin/loginと入力しEnterを押します
+4. 表示されたページのメールアドレスに先程シーダーで作成したメールアドレス（admin@admin.com）とパスワード（Password123）を入力し、ログインします
+5. コンビニの追加編集削除ページになります
+6. コンビニを選択するとジャンルの追加編集削除画面に遷移します
+7. ジャンルを選択するとそのコンビニの商品の追加編集削除画面に遷移します
+   
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+##何故検証サイトがないのか
+セキュリティの観点から、まだサーバー構築のスキル不足と感じた為、開発環境の配布としました。
