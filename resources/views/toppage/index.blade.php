@@ -11,20 +11,26 @@
           <div class="card-body">
             <table class="table table-borderless">
               <tbody>
-                @foreach($store_types as $store_type)
-                  <tr>
-                    <th style="width: 20%"></th>
-                    <th style="width: 80%"></th>
-                  </tr>
-                  <tr>
-                    <td>
-                      <img src="{{ Storage::url($store_type['img_filename']) }}" width="100%" class="img-thumbnail">
-                    </td>
-                    <td class="h4 text-center">
-                      <a href="{{ route('genre.index', ['store_type_id' => $store_type['id']]) }}">{{ $store_type['name'] }}</a>
-                    </td>
-                  </tr>
-                @endforeach
+                @if($store_types->isEmpty())
+                  <div class="text-center">
+                    <h1>データがありません</h1>
+                  </div>
+                @else
+                  @foreach($store_types as $store_type)
+                    <tr>
+                      <th style="width: 20%"></th>
+                      <th style="width: 80%"></th>
+                    </tr>
+                    <tr>
+                      <td>
+                        <img src="{{ Storage::url($store_type['img_filename']) }}" width="100%" class="img-thumbnail">
+                      </td>
+                      <td class="h4 text-center">
+                        <a href="{{ route('genre.index', ['store_type_id' => $store_type['id']]) }}">{{ $store_type['name'] }}</a>
+                      </td>
+                    </tr>
+                  @endforeach
+                @endif
               </tbody>
             </table>
             @auth

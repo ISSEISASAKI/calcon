@@ -98,12 +98,17 @@ class GenreManagementController extends Controller
     public function destroy(Request $request) {
         $store_type_id = $request -> store_type_id;
         $genre_id = $request -> id;
+        $stores[] = StoreType::find($store_type_id);
+
+        foreach ($stores as $store){
+            $store_name = $store['name'];
+        }
 
         $genre_managements = Genre::find($genre_id);
         $genre_managements->delete();
 
         $genre_managements = Genre::all();
  
-        return view('genre_management.index', compact('genre_managements', 'store_type_id', 'genre_id'));
+        return view('genre_management.index', compact('genre_managements', 'store_type_id', 'genre_id', 'store_name'));
     }
 }

@@ -13,7 +13,9 @@
               <tbody>
                 <p>コンビニ名：{{ $store_name }}</p>
                 @if($genres->isEmpty())
-                  <h1 class="font-weight-bold mt-4">データがありません</h1>
+                  <div class="text-center">
+                    <h1>データがありません</h1>
+                  </div>
                 @else
                   @foreach($genres as $genre)
                     <tr>
