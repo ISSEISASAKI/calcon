@@ -55,6 +55,7 @@ php artisan serve
 php artisan db:seed --class SetteingSeeder
 ```
 と入力します(一般ユーザーで入力した際には割愛します)
+
 2. 同じくターミナルで
 ```
 php artisan serve
