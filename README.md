@@ -13,12 +13,14 @@ calconの説明をします
 git clone https://github.com/ISSEISASAKI/calcon.git
 ```
 と入力します
+
 2. 続いてターミナルで
 ```
 composer install
 ```
 と入力します
-3. .envファイルですが、採用担当者様へこちらよりメールで送り致します
+3. .envファイルですが、必要の際には採用担当者様へこちらよりメールでお送り致します
+   
 4. 最後にターミナルで
 ```
 php artisan migrate
@@ -31,6 +33,7 @@ php artisan migrate
 php artisan db:seed --class SetteingSeeder
 ```
 と入力します
+
 2. 同じくターミナルで
 ```
 php artisan serve
