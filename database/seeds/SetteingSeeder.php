@@ -158,21 +158,6 @@ class SetteingSeeder extends Seeder
         ]);
 
         $randomname = Str::random(40);
-        $from = database_path( 'migration/10.jpeg');
-        $to = storage_path( 'app/public/img/');
-        File::copy($from, $to . $randomname);
-
-        Product::create([
-            'name' => '明太マヨのスパゲティ',
-            'store_type_id' => $store1 -> id,
-            'genre_id' => $genre2 -> id,
-            'calorie' => '673',
-            'price' => '421',
-            'img_filename' => 'img/' . $randomname,
-            'admin_id' => 'seeder',
-        ]);
-
-        $randomname = Str::random(40);
         $from = database_path( 'migration/11.jpeg');
         $to = storage_path( 'app/public/img/');
         File::copy($from, $to . $randomname);
